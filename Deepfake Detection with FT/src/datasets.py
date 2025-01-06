@@ -27,15 +27,15 @@ class Dataset(torch.utils.data.Dataset):
 
 def get_data_loaders(train_image_paths, train_labels, test_image_paths, test_labels, batch_size, transform=None):
     train_dataset = Dataset(train_image_paths, train_labels, transform)
-    test_dataset = Dataset(test_image_paths, test_labels, transform)
+    valid_dataset = Dataset(test_image_paths, test_labels, transform)
 
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+    valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=batch_size, shuffle=False)
 
-    return train_loader, test_loader
+    return train_loader, valid_loader
 
 # Compute mean and std of the dataset
-'''def compute_mean_and_std(data_dir):
+def compute_mean_and_std(data_dir):
     """
     Compute per-channel mean and std of the dataset (to be used in transforms.Normalize())
     """
@@ -68,4 +68,4 @@ def get_data_loaders(train_image_paths, train_labels, test_image_paths, test_lab
     # Cache results so we don't need to redo the computation
     torch.save({"mean": mean, "std": std}, cache_file)
 
-    return mean, std'''
+    return mean, std

@@ -1,5 +1,8 @@
+import torch
+import torch.nn as nn
+
 class Model(nn.Module):
-    def __init__(self, fourier=False, fourier_only=False, random_fourier=False, combined=False, combined_random=False):
+    def __init__(self, fourier=False, fourier_only=False, random_fourier=False, combined=True, combined_random=False):
         super(Model, self).__init__()
         self.fourier = fourier
         self.random_fourier = random_fourier
@@ -11,20 +14,35 @@ class Model(nn.Module):
             nn.Conv2d(3, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
+            nn.Conv2d(64, 3, kernel_size=3, padding=1),
+            nn.BatchNorm2d(3),
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+
+            nn.Conv2d(3, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2),
-            nn.Dropout(0.3),
-            nn.Conv2d(128, 256, kernel_size=3, padding=1),
-            nn.BatchNorm2d(256),
+            nn.Conv2d(128, 3, kernel_size=3, padding=1),
+            nn.BatchNorm2d(3),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
-            nn.Conv2d(256, 512, kernel_size=3, padding=1),
+
+            nn.Conv2d(3, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(),
+            nn.Conv2d(256, 3, kernel_size=3, padding=1),
+            nn.BatchNorm2d(3),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Dropout(0.3),
+
+            nn.Conv2d(3, 512, kernel_size=3, padding=1),
             nn.BatchNorm2d(512),
+            nn.ReLU(),
+            nn.Conv2d(512, 3, kernel_size=3, padding=1),
+            nn.BatchNorm2d(3),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
@@ -64,10 +82,13 @@ class Model(nn.Module):
         x_phase = torch.angle(x)
         x_mag_flattened = x_mag.view(x_mag.size(0), -1)
         x_phase_flattened = x_phase.view(x_phase.size(0), -1)
+
         return x_mag_flattened, x_phase_flattened
 
     def forward(self, x):
         conv_output = self.conv_blocks(x)
+
+        # Flatten the output of the convolutional layers into a 2D tensor
         conv_output_flattened = conv_output.view(conv_output.size(0), -1)
 
         if self.fourier:
