@@ -18,7 +18,7 @@ def evaluate(model, valid_loader):
     all_labels = []
     all_predictions = []
 
-    with torch.no_grad():
+    with torch.inference_mode():
         for images, labels in valid_loader:
             outputs = model(images)
             _, predicted = torch.max(outputs.data, 1)

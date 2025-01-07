@@ -2,32 +2,32 @@ import torch
 import torch.nn as nn
 
 class Model(nn.Module):
-    def __init__(self, use_fourier=True, combined=True):
+    def __init__(self, use_fourier=False, combined=False):
         super(Model, self).__init__()
         self.use_fourier = use_fourier
         self.combined = combined
 
         # Convolutional feature extractor
         self.conv_blocks = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=3, padding=1),
+            nn.Conv2d(3, 64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
 
-            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
-            nn.Conv2d(256, 512, kernel_size=3, padding=1),
+            nn.Conv2d(256, 512, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(512),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
 
-            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(512),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
@@ -37,7 +37,8 @@ class Model(nn.Module):
         # Fourier transform feature head
         if use_fourier:
             self.fourier_head = nn.Sequential(
-                nn.Linear(512 * 8 * 8, 1024),
+                # nn.Linear(512 * 8 * 8, 1024),
+                nn.Linear(301056, 1024),
                 nn.ReLU(),
                 nn.Dropout(0.3),
                 nn.Linear(1024, 512),
@@ -47,7 +48,7 @@ class Model(nn.Module):
 
         # Classification head
         self.classifier = nn.Sequential(
-            nn.Linear(1024 if combined else 512, 256),
+            nn.Linear(1024 if combined else 512*16*16, 256),
             nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(256, 1),
@@ -69,12 +70,16 @@ class Model(nn.Module):
 
     def forward(self, x):
         # Extract convolutional features
+        # print(f"Image shape: {x.shape}")
         conv_output = self.conv_blocks(x)
+        # print(f"Conv layer output: {conv_output.shape}")
         conv_output_flattened = conv_output.view(conv_output.size(0), -1)
+        # print(f"COnv layer output flattened: {conv_output_flattened.shape}")
 
         if self.use_fourier:
             # Extract Fourier features
             fourier_features = self.apply_fourier_transform(x)
+            # print(fourier_features.shape)
             #fourier_features_flattened = fourier_features.view(fourier_features.size(0), -1)
             fourier_output = self.fourier_head(fourier_features)
 

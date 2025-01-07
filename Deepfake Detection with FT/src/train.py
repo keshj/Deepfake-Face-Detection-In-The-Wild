@@ -1,5 +1,6 @@
 import os
 import torch   
+from tqdm.auto import tqdm
 
 def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
     model.train()
@@ -11,10 +12,10 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
 
             labels = labels.float().to('cuda' if torch.cuda.is_available() else 'cpu')
             inputs = inputs.to('cuda' if torch.cuda.is_available() else 'cpu')
-            
-            optimizer.zero_grad()
+
             outputs = model(inputs)
-            loss = criterion(outputs, labels)
+            loss = criterion(outputs.view(-1), labels)
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             training_loss += loss.item()
@@ -28,6 +29,9 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
             checkpoint_path = os.path.join(checkpoint_dir, f'checkpoint_epoch_{epoch+1}.pth')
             torch.save(model.state_dict(), checkpoint_path)
             print(f'Checkpoint saved at {checkpoint_path}')
+    
+    torch.save(model.state_dict(), checkpoint_path)
+    print(f'Checkpoint saved at {checkpoint_path}')
 
 def main():
     pass
