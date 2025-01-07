@@ -20,6 +20,7 @@ def parse_args():
     parser.add_argument('--train_dir', type=str, default='D:/sp_cup/dataset/train', help='Directory for training data')
     parser.add_argument('--test_dir', type=str, default='D:/sp_cup/dataset/valid', help='Directory for testing data')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training')
+    parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train')
     return parser.parse_args()
 
 

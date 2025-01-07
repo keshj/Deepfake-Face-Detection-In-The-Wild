@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 from tqdm import tqdm
 import multiprocessing
 
-class Dataset(torch.utils.data.Dataset):
+class Dataset(TorchDataset):
     def __init__(self, image_paths, labels, transform=None):
         self.image_paths = image_paths
         self.labels = labels
@@ -24,15 +24,29 @@ class Dataset(torch.utils.data.Dataset):
 
         return image, label
 
+def get_image_paths_and_labels(data_dir):
+    image_paths = []
+    labels = []
+    class_names = os.listdir(data_dir)
+    class_to_idx = {class_name: idx for idx, class_name in enumerate(class_names)}
+    for class_name in class_names:
+        class_dir = os.path.join(data_dir, class_name)
+        for img_name in os.listdir(class_dir):
+            image_paths.append(os.path.join(class_dir, img_name))
+            labels.append(class_to_idx[class_name])
+    return image_paths, labels
 
-def get_data_loaders(train_image_paths, test_image_paths, batch_size, transform=None):
+def get_data_loaders(train_dir, test_dir, batch_size, transform=None):
+    train_image_paths, train_labels = get_image_paths_and_labels(train_dir)
+    test_image_paths, test_labels = get_image_paths_and_labels(test_dir)
+
     train_dataset = Dataset(train_image_paths, train_labels, transform)
-    valid_dataset = Dataset(test_image_paths, test_labels, transform)
+    test_dataset = Dataset(test_image_paths, test_labels, transform)
 
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=batch_size, shuffle=False)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
-    return train_loader, valid_loader
+    return train_loader, test_loader
 
 # Compute mean and std of the dataset
 def compute_mean_and_std(data_dir):
