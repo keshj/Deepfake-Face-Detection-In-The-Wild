@@ -25,7 +25,7 @@ class Dataset(torch.utils.data.Dataset):
         return image, label
 
 
-def get_data_loaders(train_image_paths, train_labels, test_image_paths, test_labels, batch_size, transform=None):
+def get_data_loaders(train_image_paths, test_image_paths, batch_size, transform=None):
     train_dataset = Dataset(train_image_paths, train_labels, transform)
     valid_dataset = Dataset(test_image_paths, test_labels, transform)
 
