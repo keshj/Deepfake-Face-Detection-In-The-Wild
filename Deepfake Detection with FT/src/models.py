@@ -75,6 +75,7 @@ class Model(nn.Module):
         if self.use_fourier:
             # Extract Fourier features
             fourier_features = self.apply_fourier_transform(x)
+            #fourier_features_flattened = fourier_features.view(fourier_features.size(0), -1)
             fourier_output = self.fourier_head(fourier_features)
 
             if self.combined:

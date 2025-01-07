@@ -31,6 +31,7 @@ def main():
     # writer = setup_tensorboard(args.log_dir)
 
     # Initialize model
+    print("Initializing Model")
     model = Model()
     model = model.to('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -47,10 +48,12 @@ def main():
     train_loader, valid_loader = get_data_loaders(args.train_dir, args.test_dir, args.batch_size, transform)
 
     # Train the model
+    print("Start Training")
     train(model, train_loader, criterion, optimizer, args.epochs, args.checkpoint_dir)
 
     model = load_model('/checkpoint.pth')
     # Evaluate the model
+    print("Start Testing")
     evaluate(model, valid_loader)
 
 if __name__ == "__main__":

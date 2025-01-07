@@ -5,6 +5,8 @@ from imageio import imread
 from torchvision import datasets, transforms
 from tqdm import tqdm
 import multiprocessing
+from PIL import Image
+from skimage.io import imread
 
 class Dataset(TorchDataset):
     def __init__(self, image_paths, labels, transform=None):
@@ -20,7 +22,9 @@ class Dataset(TorchDataset):
         label = self.labels[idx]
 
         if self.transform:
+            image = Image.fromarray(image)
             image = self.transform(image)
+
 
         return image, label
 
