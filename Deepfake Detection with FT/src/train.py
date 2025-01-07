@@ -9,6 +9,9 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
 
         for batch_idx, (inputs, labels) in enumerate(dataloader):
 
+            labels = labels.float().to('cuda' if torch.cuda.is_available() else 'cpu')
+            inputs = inputs.to('cuda' if torch.cuda.is_available() else 'cpu')
+            
             optimizer.zero_grad()
             outputs = model(inputs)
             loss = criterion(outputs, labels)

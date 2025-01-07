@@ -2,110 +2,88 @@ import torch
 import torch.nn as nn
 
 class Model(nn.Module):
-    def __init__(self, fourier=False, fourier_only=False, random_fourier=False, combined=True, combined_random=False):
+    def __init__(self, use_fourier=True, combined=True):
         super(Model, self).__init__()
-        self.fourier = fourier
-        self.random_fourier = random_fourier
-        self.fourier_only = fourier_only
+        self.use_fourier = use_fourier
         self.combined = combined
-        self.combined_random = combined_random
 
+        # Convolutional feature extractor
         self.conv_blocks = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 3, kernel_size=3, padding=1),
-            nn.BatchNorm2d(3),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2),
-            nn.Dropout(0.3),
-
-            nn.Conv2d(3, 128, kernel_size=3, padding=1),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.Conv2d(128, 3, kernel_size=3, padding=1),
-            nn.BatchNorm2d(3),
-            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
 
-            nn.Conv2d(3, 256, kernel_size=3, padding=1),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
-            nn.Conv2d(256, 3, kernel_size=3, padding=1),
-            nn.BatchNorm2d(3),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2),
-            nn.Dropout(0.3),
-
-            nn.Conv2d(3, 512, kernel_size=3, padding=1),
+            nn.Conv2d(256, 512, kernel_size=3, padding=1),
             nn.BatchNorm2d(512),
             nn.ReLU(),
-            nn.Conv2d(512, 3, kernel_size=3, padding=1),
-            nn.BatchNorm2d(3),
-            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Dropout(0.3),
+
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.BatchNorm2d(512),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Dropout(0.3)
         )
 
-        if fourier_only or combined:
+        # Fourier transform feature head
+        if use_fourier:
             self.fourier_head = nn.Sequential(
                 nn.Linear(512 * 8 * 8, 1024),
                 nn.ReLU(),
                 nn.Dropout(0.3),
-                nn.Linear(1024, 1),
-                nn.Sigmoid()
+                nn.Linear(1024, 512),
+                nn.ReLU(),
+                nn.Dropout(0.3)
             )
 
-        if not fourier_only:
-            self.head = nn.Sequential(
-                nn.Linear(512 * 8 * 8, 512),
-                nn.ReLU(),
-                nn.Dropout(0.3),
-                nn.Linear(512, 1),
-                nn.Sigmoid()
-            )
-
-        if combined:
-            self.combined_head = nn.Sequential(
-                nn.Linear(1024, 256),
-                nn.ReLU(),
-                nn.Dropout(0.3),
-                nn.Linear(256, 1),
-                nn.Sigmoid()
-            )
+        # Classification head
+        self.classifier = nn.Sequential(
+            nn.Linear(1024 if combined else 512, 256),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(256, 1),
+            nn.Sigmoid()
+        )
 
     def apply_fourier_transform(self, x):
-        x = x.float()
-        x = torch.fft.fft2(x)
+        """
+        Applies Fourier Transform to the input tensor and extracts magnitude and phase.
+        """
+        x = torch.fft.fft2(x.float())
         x_mag = torch.abs(x)
         x_phase = torch.angle(x)
         x_mag_flattened = x_mag.view(x_mag.size(0), -1)
         x_phase_flattened = x_phase.view(x_phase.size(0), -1)
 
-        return x_mag_flattened, x_phase_flattened
+        # Reduce dimensions using pooling
+        return torch.cat((x_mag_flattened, x_phase_flattened), dim=1)
 
     def forward(self, x):
+        # Extract convolutional features
         conv_output = self.conv_blocks(x)
-
-        # Flatten the output of the convolutional layers into a 2D tensor
         conv_output_flattened = conv_output.view(conv_output.size(0), -1)
 
-        if self.fourier:
-            x_mag_flattened, x_phase_flattened = self.apply_fourier_transform(x)
-            combined_features = torch.cat((conv_output_flattened, x_mag_flattened, x_phase_flattened), dim=1)
-            return self.head(combined_features)
+        if self.use_fourier:
+            # Extract Fourier features
+            fourier_features = self.apply_fourier_transform(x)
+            fourier_output = self.fourier_head(fourier_features)
 
-        elif self.fourier_only:
-            x_mag_flattened, x_phase_flattened = self.apply_fourier_transform(x)
-            combined_features = torch.cat((x_mag_flattened, x_phase_flattened), dim=1)
-            return self.fourier_head(combined_features)
+            if self.combined:
+                # Combine Fourier and convolutional features
+                combined_features = torch.cat((conv_output_flattened, fourier_output), dim=1)
+                return self.classifier(combined_features)
 
-        elif self.combined:
-            x_mag_flattened, x_phase_flattened = self.apply_fourier_transform(x)
-            combined_features = torch.cat((x_mag_flattened, x_phase_flattened), dim=1)
-            x_fourier = self.fourier_head(combined_features)
-            return self.combined_head(torch.cat((x_fourier, conv_output_flattened), dim=1))
-
-        else:
-            return self.head(conv_output_flattened)
+            # Use only Fourier features
+            return self.classifier(fourier_output)
+        
+        # Use only convolutional features
+        return self.classifier(conv_output_flattened)
