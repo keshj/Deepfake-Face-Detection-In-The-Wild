@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import numpy as np
 
 '''class Model(nn.Module):
     def __init__(self, use_fourier=False, combined=False):
@@ -95,38 +96,51 @@ import torch.nn as nn
         return self.classifier(conv_output_flattened)
 '''
 
-class FrequencyBranch(nn.Module):
-    def __init__(self, output_size=128):
-        super(FrequencyBranch, self).__init__()
-        # Recalculate input size for 255x255 images
-        input_size = 3 * 2 * 128 * 128
-        hidden_size1 = 512
-        hidden_size2 = 256
+import torch
+import torch.nn as nn
+import numpy as np
 
+class FrequencyBranch(nn.Module):
+    def __init__(self, output_size=128, hidden_size1=512, hidden_size2=256):
+        super(FrequencyBranch, self).__init__()
+        # Recalculate input size for single sample (without batch dimension)
+        input_size = 3 * 128 * 128 * 2  # 128x128 pixels, 2 features (amplitude and phase)
         self.fc1 = nn.Linear(input_size, hidden_size1)
         self.fc2 = nn.Linear(hidden_size1, hidden_size2)
         self.fc3 = nn.Linear(hidden_size2, output_size)
         self.relu = nn.ReLU()
 
     def forward(self, img):
+        # img shape: [batch_size, channels, height, width]
+        batch_size = img.shape[0]
+        
         # Move to CPU for numpy operations
         img_np = img.cpu().numpy()
-
-        features = []
-        for channel in range(3):
-            f_transform = np.fft.fft2(img_np[channel])
+        
+        # Process each image in the batch
+        batch_features = []
+        for i in range(batch_size):
+            # Apply FFT to single image
+            f_transform = np.fft.fft2(img_np[i])
             f_transform_shifted = np.fft.fftshift(f_transform)
             amplitude = np.abs(f_transform_shifted)
             phase = np.angle(f_transform_shifted)
-            features.extend([amplitude.flatten(), phase.flatten()])
-
-        input_vector = np.concatenate(features)
-        input_tensor = torch.tensor(input_vector, dtype=torch.float32, device=device)
-
+            
+            # Concatenate amplitude and phase
+            features = np.concatenate((amplitude.flatten(), phase.flatten()))
+            batch_features.append(features)
+            
+        # Stack all features into a batch
+        batch_features = np.stack(batch_features)
+        
+        # Convert back to tensor
+        input_tensor = torch.tensor(batch_features, dtype=torch.float32, device=img.device)
+        # Pass through network
         x = self.relu(self.fc1(input_tensor))
         x = self.relu(self.fc2(x))
         output_vector = self.fc3(x)
-
+        
+        # output_vector shape will be [batch_size, output_size]
         return output_vector
     
 class ConvBranch(nn.Module):
