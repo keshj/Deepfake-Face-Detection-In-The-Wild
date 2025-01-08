@@ -49,10 +49,10 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
             print(f'Checkpoint saved at {checkpoint_path}')
     
     # Save final model
-    MODEL_PATH = Path("models")
+    MODEL_PATH = Path("checpoints")
     MODEL_PATH.mkdir(parents=True, exist_ok=True)
 
-    MODEL_NAME = "model_01_resnet50.pth"
+    MODEL_NAME = "final_checkpoint.pth"
     MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 
     print(f"Saving model to: {MODEL_SAVE_PATH}")
