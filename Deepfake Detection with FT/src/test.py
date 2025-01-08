@@ -13,13 +13,17 @@ def load_model(model, checkpoint_path):
     return model
 
 def evaluate(model, valid_loader):
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
     correct = 0
     total = 0
     all_labels = []
     all_predictions = []
 
     with torch.inference_mode():
+
         for images, labels in valid_loader:
+            labels = labels.float().to(device)
+            images = images.to(device)
             outputs = model(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -42,7 +46,8 @@ def evaluate(model, valid_loader):
     print(conf_matrix)
 
 def main():
-    # Define transformations for the test dataset
+    pass
+    """# Define transformations for the test dataset
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
@@ -58,7 +63,7 @@ def main():
     
     model = model.to('cuda' if torch.cuda.is_available() else 'cpu')
     # Evaluate the model
-    evaluate(model, valid_loader)
+    evaluate(model, valid_loader)"""
 
 if __name__ == '__main__':
     main()
