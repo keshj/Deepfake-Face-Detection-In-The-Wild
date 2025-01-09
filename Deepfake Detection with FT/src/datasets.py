@@ -1,14 +1,18 @@
 import os
 import torch
+import torchvision.utils
 from torch.utils.data import Dataset as TorchDataset
+from torch.utils.data import DataLoader
 from imageio import imread
 from torchvision import datasets, transforms
 from tqdm import tqdm
 import multiprocessing
 from PIL import Image
 from skimage.io import imread
+import matplotlib.pyplot as plt
 
-class Dataset(TorchDataset):
+
+"""class Dataset(TorchDataset):
     def __init__(self, image_paths, labels, transform=None):
         self.image_paths = image_paths
         self.labels = labels
@@ -38,19 +42,42 @@ def get_image_paths_and_labels(data_dir):
         for img_name in os.listdir(class_dir):
             image_paths.append(os.path.join(class_dir, img_name))
             labels.append(class_to_idx[class_name])
-    return image_paths, labels
+    return image_paths, labels"""
 
 def get_data_loaders(train_dir, test_dir, batch_size, transform=None):
-    train_image_paths, train_labels = get_image_paths_and_labels(train_dir)
-    test_image_paths, test_labels = get_image_paths_and_labels(test_dir)
+    """
+    Create train and test data loaders using torchvision.datasets.ImageFolder.
+    """
 
-    train_dataset = Dataset(train_image_paths, train_labels, transform)
-    test_dataset = Dataset(test_image_paths, test_labels, transform)
+    # Create datasets using ImageFolder
+    train_dataset = datasets.ImageFolder(train_dir, transform=transform)
+    test_dataset = datasets.ImageFolder(test_dir, transform=transform)
 
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+    # Create DataLoaders for train and test datasets
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     return train_loader, test_loader
+
+# Function to show a batch of images
+def visualize_batch(images, labels, class_names=None):
+    """
+    Visualizes a batch of images with their labels.
+    
+    Args:
+        images (torch.Tensor): Batch of images of shape (batch_size, channels, height, width).
+        labels (torch.Tensor): Corresponding labels for the images.
+        class_names (list): Optional list of class names corresponding to label indices.
+    """
+    # Convert images from torch.Tensor to a format usable by matplotlib
+    images = torchvision.utils.make_grid(images, nrow=8, normalize=True).permute(1, 2, 0)
+    
+    # Plot the images
+    plt.figure(figsize=(12, 6))
+    plt.imshow(images)
+    plt.axis("off")
+    plt.title(f"Labels: {', '.join([class_names[label] if class_names else str(label.item()) for label in labels[:8]])}")
+    plt.show()
 
 # Compute mean and std of the dataset
 def compute_mean_and_std(data_dir):
