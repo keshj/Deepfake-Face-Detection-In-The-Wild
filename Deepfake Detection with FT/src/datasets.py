@@ -57,10 +57,12 @@ def compute_mean_and_std(data_dir):
     """
     Compute per-channel mean and std of the dataset (to be used in transforms.Normalize())
     """
+
     cache_file = "mean_and_std.pt"
     if os.path.exists(cache_file):
         print(f"Reusing cached mean and std")
         d = torch.load(cache_file)
+
         return d["mean"], d["std"]
 
     ds = datasets.ImageFolder(
@@ -70,18 +72,22 @@ def compute_mean_and_std(data_dir):
         ds, batch_size=1, num_workers=multiprocessing.cpu_count()
     )
 
-    mean = torch.zeros(3)
-    var = torch.zeros(3)
+    mean = 0.0
+    for images, _ in tqdm(dl, total=len(ds), desc="Computing mean", ncols=80):
+        batch_samples = images.size(0)
+        images = images.view(batch_samples, images.size(1), -1)
+        mean += images.mean(2).sum(0)
+    mean = mean / len(dl.dataset)
+
+    var = 0.0
     npix = 0
+    for images, _ in tqdm(dl, total=len(ds), desc="Computing std", ncols=80):
+        batch_samples = images.size(0)
+        images = images.view(batch_samples, images.size(1), -1)
+        var += ((images - mean.unsqueeze(1)) ** 2).sum([0, 2])
+        npix += images.nelement()
 
-    for images, _ in tqdm(dl, total=len(ds), desc="Computing mean and std", ncols=80):
-        images = images.view(3, -1)
-        npix += images.size(1)
-        mean += images.mean(1)
-        var += images.var(1, unbiased=False)
-
-    mean /= len(ds)
-    std = torch.sqrt(var / len(ds))
+    std = torch.sqrt(var / (npix / 3))
 
     # Cache results so we don't need to redo the computation
     torch.save({"mean": mean, "std": std}, cache_file)
