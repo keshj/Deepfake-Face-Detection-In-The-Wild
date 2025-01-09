@@ -1,14 +1,18 @@
 import os
 import torch
+import torchvision.utils
 from torch.utils.data import Dataset as TorchDataset
+from torch.utils.data import DataLoader
 from imageio import imread
 from torchvision import datasets, transforms
 from tqdm import tqdm
 import multiprocessing
 from PIL import Image
 from skimage.io import imread
+import matplotlib.pyplot as plt
 
-class Dataset(TorchDataset):
+
+"""class Dataset(TorchDataset):
     def __init__(self, image_paths, labels, transform=None):
         self.image_paths = image_paths
         self.labels = labels
@@ -38,19 +42,48 @@ def get_image_paths_and_labels(data_dir):
         for img_name in os.listdir(class_dir):
             image_paths.append(os.path.join(class_dir, img_name))
             labels.append(class_to_idx[class_name])
-    return image_paths, labels
+    return image_paths, labels"""
 
 def get_data_loaders(train_dir, test_dir, batch_size, transform=None):
-    train_image_paths, train_labels = get_image_paths_and_labels(train_dir)
-    test_image_paths, test_labels = get_image_paths_and_labels(test_dir)
+    """
+    Create train and test data loaders using torchvision.datasets.ImageFolder.
+    """
 
-    train_dataset = Dataset(train_image_paths, train_labels, transform)
-    test_dataset = Dataset(test_image_paths, test_labels, transform)
+    # Create datasets using ImageFolder
+    train_dataset = datasets.ImageFolder(train_dir, transform=transform)
+    test_dataset = datasets.ImageFolder(test_dir, transform=transform)
 
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+    # Create DataLoaders for train and test datasets
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     return train_loader, test_loader
+
+# Function to show a batch of images
+def visualize_one_batch(data_loaders, max_n: int = 10):
+    """
+    Visualize one batch of data.
+
+    :param data_loaders: dictionary containing data loaders
+    :param max_n: maximum number of images to show
+    :return: None
+    """
+
+    dataiter  = iter(data_loaders)
+    images, labels  = next(dataiter)
+
+    # Get class names from the train data loader
+    class_names  = data_loaders.dataset.classes
+
+    # Convert from BGR (the format used by pytorch) to RGB (the format expected by matplotlib)
+    images = torch.permute(images, (0, 2, 3, 1)).clip(0, 1)
+
+    # plot the images in the batch, along with the corresponding labels
+    fig = plt.figure(figsize=(25, 4))
+    for idx in range(max_n):
+        ax = fig.add_subplot(1, max_n, idx + 1, xticks=[], yticks=[])
+        ax.imshow(images[idx])
+        ax.set_title(class_names[labels[idx].item()])
 
 # Compute mean and std of the dataset
 def compute_mean_and_std(data_dir):
@@ -58,7 +91,7 @@ def compute_mean_and_std(data_dir):
     Compute per-channel mean and std of the dataset (to be used in transforms.Normalize())
     """
 
-    cache_file = "mean_and_std.pt"
+    cache_file = "logs/mean_and_std.pt"
     if os.path.exists(cache_file):
         print(f"Reusing cached mean and std")
         d = torch.load(cache_file)
@@ -93,3 +126,4 @@ def compute_mean_and_std(data_dir):
     torch.save({"mean": mean, "std": std}, cache_file)
 
     return mean, std
+
