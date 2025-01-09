@@ -69,14 +69,23 @@ def visualize_batch(images, labels, class_names=None):
         labels (torch.Tensor): Corresponding labels for the images.
         class_names (list): Optional list of class names corresponding to label indices.
     """
-    # Convert images from torch.Tensor to a format usable by matplotlib
-    images = torchvision.utils.make_grid(images, nrow=8, normalize=True).permute(1, 2, 0)
+    batch_size = images.size(0)  # Get the number of images in the batch
+    nrow = batch_size  # Set the number of images per row to match batch size
+    
+    # Convert images to a grid
+    images_grid = torchvision.utils.make_grid(images, nrow=nrow, normalize=True).permute(1, 2, 0)
+    
+    # Prepare label titles
+    if class_names:
+        labels_str = [class_names[label] for label in labels]
+    else:
+        labels_str = [str(label.item()) for label in labels]
     
     # Plot the images
-    plt.figure(figsize=(12, 6))
-    plt.imshow(images)
+    plt.figure(figsize=(nrow * 2, 4))  # Adjust figure size based on the number of images
+    plt.imshow(images_grid)
     plt.axis("off")
-    plt.title(f"Labels: {', '.join([class_names[label] if class_names else str(label.item()) for label in labels[:8]])}")
+    plt.title("Labels: " + ", ".join(labels_str))
     plt.show()
 
 # Compute mean and std of the dataset
