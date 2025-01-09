@@ -58,7 +58,7 @@ def compute_mean_and_std(data_dir):
     Compute per-channel mean and std of the dataset (to be used in transforms.Normalize())
     """
 
-    cache_file = "mean_and_std.pt"
+    cache_file = "logs/mean_and_std.pt"
     if os.path.exists(cache_file):
         print(f"Reusing cached mean and std")
         d = torch.load(cache_file)
