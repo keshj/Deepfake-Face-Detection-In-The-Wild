@@ -60,7 +60,7 @@ def get_data_loaders(train_dir, test_dir, batch_size, transform=None):
     return train_loader, test_loader
 
 # Function to show a batch of images
-def visualize_one_batch(data_loaders, max_n: int = 5):
+def visualize_one_batch(data_loaders, max_n: int = 10):
     """
     Visualize one batch of data.
 
@@ -69,31 +69,13 @@ def visualize_one_batch(data_loaders, max_n: int = 5):
     :return: None
     """
 
-    # YOUR CODE HERE:
-    # obtain one batch of training images
-    # First obtain an iterator from the train dataloader
-    dataiter  = iter(data_loaders["train"])
-    # Then call the .next() method on the iterator you just
-    # obtained
+    dataiter  = iter(data_loaders)
     images, labels  = next(dataiter)
 
-    # Undo the normalization (for visualization purposes)
-    mean, std = compute_mean_and_std()
-    invTrans = transforms.Compose(
-        [
-            transforms.Normalize(mean=[0.0, 0.0, 0.0], std=1 / std),
-            transforms.Normalize(mean=-mean, std=[1.0, 1.0, 1.0]),
-        ]
-    )
-
-    images = invTrans(images)
-
-    # YOUR CODE HERE:
     # Get class names from the train data loader
-    class_names  = data_loaders["train"].dataset.classes
+    class_names  = data_loaders.dataset.classes
 
-    # Convert from BGR (the format used by pytorch) to
-    # RGB (the format expected by matplotlib)
+    # Convert from BGR (the format used by pytorch) to RGB (the format expected by matplotlib)
     images = torch.permute(images, (0, 2, 3, 1)).clip(0, 1)
 
     # plot the images in the batch, along with the corresponding labels
@@ -101,8 +83,6 @@ def visualize_one_batch(data_loaders, max_n: int = 5):
     for idx in range(max_n):
         ax = fig.add_subplot(1, max_n, idx + 1, xticks=[], yticks=[])
         ax.imshow(images[idx])
-        # print out the correct label for each image
-        # .item() gets the value contained in a Tensor
         ax.set_title(class_names[labels[idx].item()])
 
 # Compute mean and std of the dataset
@@ -146,3 +126,4 @@ def compute_mean_and_std(data_dir):
     torch.save({"mean": mean, "std": std}, cache_file)
 
     return mean, std
+
