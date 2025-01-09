@@ -60,33 +60,50 @@ def get_data_loaders(train_dir, test_dir, batch_size, transform=None):
     return train_loader, test_loader
 
 # Function to show a batch of images
-def visualize_batch(images, labels, class_names=None):
+def visualize_one_batch(data_loaders, max_n: int = 5):
     """
-    Visualizes a batch of images with their labels.
-    
-    Args:
-        images (torch.Tensor): Batch of images of shape (batch_size, channels, height, width).
-        labels (torch.Tensor): Corresponding labels for the images.
-        class_names (list): Optional list of class names corresponding to label indices.
+    Visualize one batch of data.
+
+    :param data_loaders: dictionary containing data loaders
+    :param max_n: maximum number of images to show
+    :return: None
     """
-    batch_size = images.size(0)  # Get the number of images in the batch
-    nrow = batch_size  # Set the number of images per row to match batch size
-    
-    # Convert images to a grid
-    images_grid = torchvision.utils.make_grid(images, nrow=nrow, normalize=True).permute(1, 2, 0)
-    
-    # Prepare label titles
-    if class_names:
-        labels_str = [class_names[label] for label in labels]
-    else:
-        labels_str = [str(label.item()) for label in labels]
-    
-    # Plot the images
-    plt.figure(figsize=(nrow * 2, 4))  # Adjust figure size based on the number of images
-    plt.imshow(images_grid)
-    plt.axis("off")
-    plt.title("Labels: " + ", ".join(labels_str))
-    plt.show()
+
+    # YOUR CODE HERE:
+    # obtain one batch of training images
+    # First obtain an iterator from the train dataloader
+    dataiter  = iter(data_loaders["train"])
+    # Then call the .next() method on the iterator you just
+    # obtained
+    images, labels  = next(dataiter)
+
+    # Undo the normalization (for visualization purposes)
+    mean, std = compute_mean_and_std()
+    invTrans = transforms.Compose(
+        [
+            transforms.Normalize(mean=[0.0, 0.0, 0.0], std=1 / std),
+            transforms.Normalize(mean=-mean, std=[1.0, 1.0, 1.0]),
+        ]
+    )
+
+    images = invTrans(images)
+
+    # YOUR CODE HERE:
+    # Get class names from the train data loader
+    class_names  = data_loaders["train"].dataset.classes
+
+    # Convert from BGR (the format used by pytorch) to
+    # RGB (the format expected by matplotlib)
+    images = torch.permute(images, (0, 2, 3, 1)).clip(0, 1)
+
+    # plot the images in the batch, along with the corresponding labels
+    fig = plt.figure(figsize=(25, 4))
+    for idx in range(max_n):
+        ax = fig.add_subplot(1, max_n, idx + 1, xticks=[], yticks=[])
+        ax.imshow(images[idx])
+        # print out the correct label for each image
+        # .item() gets the value contained in a Tensor
+        ax.set_title(class_names[labels[idx].item()])
 
 # Compute mean and std of the dataset
 def compute_mean_and_std(data_dir):
