@@ -1,18 +1,9 @@
 import torch
-from models import Model
-from datasets import Dataset
-import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
 from sklearn.metrics import confusion_matrix
 
-def load_model(model, checkpoint_path):
-    
-    model.load_state_dict(torch.load(checkpoint_path))
 
-    model.eval()  # Set the model to evaluation mode
-    return model
-
-def evaluate(model, valid_loader):
+def evaluate(model, dataloader):
+    model.eval()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     correct = 0
     total = 0
@@ -21,9 +12,10 @@ def evaluate(model, valid_loader):
 
     with torch.inference_mode():
 
-        for images, labels in valid_loader:
+        for images, labels in tqdm(dataloader):
             labels = labels.float().to(device)
             images = images.to(device)
+            
             outputs = model(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
