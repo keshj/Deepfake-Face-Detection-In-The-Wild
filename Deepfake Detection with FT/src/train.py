@@ -1,7 +1,6 @@
 import os
 import torch   
 from tqdm.auto import tqdm
-from torch.cuda.amp import GradScaler, autocast
 from torchmetrics import Accuracy
 from pathlib import Path
 
@@ -10,7 +9,7 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = model.to(device)
     accuracy = Accuracy(task='binary').to(device)
-    scaler = GradScaler()
+
 
     os.makedirs(checkpoint_dir, exist_ok=True)
 
@@ -22,27 +21,13 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
                 labels = labels.float().to(device)
                 inputs = inputs.to(device)
 
-                """outputs = model(inputs)
+                outputs = model(inputs)
                 loss = criterion(outputs.view(-1), labels)
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
                 training_loss += loss.item()
-                """
-
-                # Forward pass with mixed-precision
-                with autocast():
-                    outputs = model(inputs)
-                    loss = criterion(outputs.view(-1), labels)
-
-                # Backward pass
-                optimizer.zero_grad()
-                scaler.scale(loss).backward()
-                scaler.step(optimizer)
-                scaler.update()
-        
-                # Update accuracy metric
-                training_loss += loss.item()
+                
                 predicted = (outputs.view(-1) > 0.5).float()
                 accuracy.update(predicted, labels)
 
@@ -61,7 +46,7 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
             print(f'Checkpoint saved at {checkpoint_path}')
     
     # Save final model
-    MODEL_PATH = Path("checpoints")
+    MODEL_PATH = Path("checkpoints")
     MODEL_PATH.mkdir(parents=True, exist_ok=True)
 
     MODEL_NAME = "final_checkpoint.pth"
@@ -71,10 +56,6 @@ def train(model, dataloader, criterion, optimizer, num_epochs, checkpoint_dir):
     torch.save(obj=model.state_dict(),
                 f=MODEL_SAVE_PATH)
     
-
-    # final_checkpoint_path = os.path.join(checkpoint_dir, 'final_checkpoint.pth')
-    # torch.save(model.state_dict(), final_checkpoint_path)
-    # print(f'Final checkpoint saved at {final_checkpoint_path}')
 
 def main():
     pass

@@ -3,12 +3,12 @@ import torch
 import torchvision.utils
 from torch.utils.data import Dataset as TorchDataset
 from torch.utils.data import DataLoader
-from imageio import imread
+# from imageio import imread
 from torchvision import datasets, transforms
 from tqdm import tqdm
 import multiprocessing
 from PIL import Image
-from skimage.io import imread
+# from skimage.io import imread
 import matplotlib.pyplot as plt
 
 
