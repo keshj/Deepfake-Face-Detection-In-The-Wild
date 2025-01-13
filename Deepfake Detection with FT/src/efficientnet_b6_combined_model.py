@@ -316,17 +316,28 @@ def compute_mean_and_std(data_dir):
     return mean, std
 
 # %%
-def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False):
+def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanced=True, max_real_samples=20000, max_fake_samples=30000):
     """
     Create train and test data loaders using torchvision.datasets.ImageFolder.
     """
-    BATCHES_PER_EPOCH = 200
+    
+    if balanced:
+        real_datset = datasets.ImageFolder(f"{data_dir}/real", transform=transform)
+        fake_dataset = datasets.ImageFolder(f"{data_dir}/fake", transform=transform)
 
-    dataset = datasets.ImageFolder(data_dir, transform=transform)
-    if data_dir.rstrip('/').endswith('train'):
-        train_indices = torch.randperm(len(dataset))[:BATCHES_PER_EPOCH * batch_size]
-        train_subset = torch.utils.data.Subset(dataset, train_indices)
-        dataset= train_subset
+        real_indices = torch.randperm(len(real_datset))[:max_real_samples]
+        fake_indices = torch.randperm(len(fake_dataset))[:max_fake_samples]
+
+        dataset = torch.utils.data.Subset(real_datset, real_indices) + torch.utils.data.Subset(fake_dataset, fake_indices)
+
+    else:
+        BATCHES_PER_EPOCH = 200
+
+        dataset = datasets.ImageFolder(data_dir, transform=transform)
+        if data_dir.rstrip('/').endswith('train'):
+            train_indices = torch.randperm(len(dataset))[:BATCHES_PER_EPOCH * batch_size]
+            train_subset = torch.utils.data.Subset(dataset, train_indices)
+            dataset= train_subset
 
     dataloader = DataLoader(dataset, 
                             batch_size=batch_size, 
@@ -335,7 +346,6 @@ def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False):
                             pin_memory=True,
                             prefetch_factor=2,
                             persistent_workers=True)
-    
 
     return dataloader
 
@@ -447,7 +457,7 @@ def save_model(model):
     model_filename = f"combined_model_b6_{timestamp}.pth"
 
     # Construct full path
-    model_save_path = os.path.join("/home/nithira/sp_cup/saved_states", model_filename)
+    model_save_path = os.path.join("/home/nithira/sp_cup/saved_states_b6", model_filename)
 
     # Save model state dictionary
     torch.save(model.state_dict(), model_save_path)
@@ -538,9 +548,6 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
 
     return history
 
-# %% [markdown]
-###### Creating a balanced dataset
-
 # %% 
 def main():
 
@@ -549,7 +556,7 @@ def main():
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
 
-    BATCH_SIZE = 256
+    BATCH_SIZE = 32
     WIDTH = 128
     HEIGHT = 128
 
@@ -562,13 +569,13 @@ def main():
     train_dir = "/home/nithira/sp_cup/dataset/train"
     valid_dir = "/home/nithira/sp_cup/dataset/valid"
 
-    train_real = len(os.listdir(f"{train_dir}/real"))
-    train_fake = len(os.listdir(f"{train_dir}/fake"))
-    valid_real = len(os.listdir(f"{valid_dir}/real"))
-    valid_fake = len(os.listdir(f"{valid_dir}/fake"))
+    train_real = (os.listdir(f"{train_dir}/real"))
+    train_fake = (os.listdir(f"{train_dir}/fake"))
+    valid_real = (os.listdir(f"{valid_dir}/real"))
+    valid_fake = (os.listdir(f"{valid_dir}/fake"))
 
-    print(f"Training dataset size: {train_real + train_fake} (Real: {train_real}, Fake: {train_fake})")
-    print(f"Validation dataset size: {valid_real + valid_fake} (Real: {valid_real}, Fake: {valid_fake})")
+    print(f"Training dataset size: {len(train_real) + len(train_fake)} (Real: {len(train_real)}, Fake: {len(train_fake)})")
+    print(f"Validation dataset size: {len(valid_real) + len(valid_fake)} (Real: {len(valid_real)}, Fake: {len(valid_fake)})")
 
     training_mean, training_std = compute_mean_and_std(train_dir)
     validating_mean, validating_std = compute_mean_and_std(valid_dir)
@@ -598,10 +605,12 @@ def main():
     train_loader = get_data_loaders(data_dir=train_dir,
                                     batch_size=BATCH_SIZE,
                                     transform=train_transform,
+                                    balanced=True,
                                     shuffle=True)
 
     valid_loader = get_data_loaders(data_dir=valid_dir, 
                                     batch_size=128,
+                                    balanced=False,
                                     transform=valid_transform)
 
     '''class_names = train_loader.dataset.classes
@@ -625,11 +634,11 @@ def main():
 
 
     # Load the trained model
-    #loaded_model = CombinedModel(HEIGHT, WIDTH)
-    #load_model(loaded_model, "/home/nithira/sp_cup/saved_states/combined_model_20250113_182951.pth", device)
+    loaded_model = CombinedModel(HEIGHT, WIDTH)
+    load_model(loaded_model, "/home/nithira/sp_cup/saved_states/combined_model_b6_20250113_201930.pth", device)
 
     # Train the model
-    history = train_model(model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=100, lr=0.00025, epochs=20)
+    history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=100, lr=0.00025, epochs=20)
 
 if __name__ == "__main__":
     main()
