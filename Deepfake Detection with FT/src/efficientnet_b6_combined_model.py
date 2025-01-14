@@ -341,13 +341,29 @@ def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanc
     dataset = datasets.ImageFolder(data_dir, transform=transform)
 
     if balanced:
-        real_datset = datasets.DatasetFolder(f"{data_dir}/real", transform=transform)
+        '''real_datset = datasets.DatasetFolder(f"{data_dir}/real", transform=transform)
         fake_dataset = datasets.DatasetFolder(f"{data_dir}/fake", transform=transform)
 
         real_indices = torch.randperm(len(real_datset))[:max_real_samples]
         fake_indices = torch.randperm(len(fake_dataset))[:max_fake_samples]
 
-        dataset = torch.utils.data.Subset(real_datset, real_indices) + torch.utils.data.Subset(fake_dataset, fake_indices)
+        dataset = torch.utils.data.Subset(real_datset, real_indices) + torch.utils.data.Subset(fake_dataset, fake_indices)'''
+
+        real_images = []
+        fake_images = []
+
+        for img, label in dataset:
+            if label == 0:
+                real_images.append((img, label))
+            elif label == 1:
+                fake_images.append((img, label))
+
+        # Randomly sample 30,000 images from label 0 (real) and 20,000 images from label 1 (fake)
+        sampled_real_images = random.sample(real_images, 30000)
+        sampled_fake_images = random.sample(fake_images, 20000)
+
+        # Combine the sampled images
+        dataset = sampled_real_images + sampled_fake_images
 
     else:
         BATCHES_PER_EPOCH = 200
