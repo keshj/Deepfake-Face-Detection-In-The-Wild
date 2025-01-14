@@ -37,6 +37,25 @@ from typing import Dict, Optional
 import logging
 from pathlib import Path
 
+class CustomDataset(torch.utils.data.Dataset):
+    def __init__(self, file_paths, labels, transform=None):
+        self.file_paths = file_paths
+        self.labels = labels
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.file_paths)
+
+    def __getitem__(self, idx):
+        image_path = self.file_paths[idx]
+        label = self.labels[idx]
+        file_id = os.path.basename(image_path).split(".")[0]  # Extract file ID from filename
+        image = Image.open(image_path).convert("RGB")  # Load image as RGB
+
+        if self.transform:
+            image = self.transform(image)
+
+        return image, label, file_id
 
 class FrequencyBranch(nn.Module):
     def __init__(self, HEIGHT, WIDTH, output_size=128, hidden_size1=512, hidden_size2=256):
@@ -269,7 +288,6 @@ class MetricsHandler:
         """Close TensorBoard writer."""
         self.writer.close()
 
-
 # %%
 def compute_mean_and_std(data_dir):
     """
@@ -320,10 +338,11 @@ def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanc
     """
     Create train and test data loaders using torchvision.datasets.ImageFolder.
     """
-    
+    dataset = datasets.ImageFolder(data_dir, transform=transform)
+
     if balanced:
-        real_datset = datasets.ImageFolder(f"{data_dir}/real", transform=transform)
-        fake_dataset = datasets.ImageFolder(f"{data_dir}/fake", transform=transform)
+        real_datset = datasets.DatasetFolder(f"{data_dir}/real", transform=transform)
+        fake_dataset = datasets.DatasetFolder(f"{data_dir}/fake", transform=transform)
 
         real_indices = torch.randperm(len(real_datset))[:max_real_samples]
         fake_indices = torch.randperm(len(fake_dataset))[:max_fake_samples]
@@ -332,8 +351,7 @@ def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanc
 
     else:
         BATCHES_PER_EPOCH = 200
-
-        dataset = datasets.ImageFolder(data_dir, transform=transform)
+        #dataset = datasets.ImageFolder(data_dir, transform=transform)
         if data_dir.rstrip('/').endswith('train'):
             train_indices = torch.randperm(len(dataset))[:BATCHES_PER_EPOCH * batch_size]
             train_subset = torch.utils.data.Subset(dataset, train_indices)
@@ -354,7 +372,6 @@ def accuracy_fn(y_true, y_pred):
   correct = torch.eq(y_true, y_pred).sum().item()
   acc = (correct/len(y_pred)) * 100
   return acc
-
 # %%
 def train(model, train_loader, optimizer, loss_fn, metrics_handler, epoch, device):
     scaler = GradScaler('cuda')
@@ -548,6 +565,28 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
 
     return history
 
+def save_submission(model, valid_loader, submission_file_path, device):
+    model.eval()
+    # Prepare to store results
+    submission_results = []
+
+    with torch.inference_mode():
+        for i, (X_test, y_test, file_ids) in enumerate(tqdm(valid_loader)):
+            X_test = X_test.to(device)
+            y_test = y_test.float().to(device)
+
+            # Get the model predictions
+            test_logits = model(X_test).squeeze()
+            test_scores = torch.sigmoid(test_logits) 
+
+            # Collect results for submission
+            for file_id, score in zip(file_ids, test_scores.cpu().numpy()):
+                submission_results.append(f"{file_id}\t{score:.6f}")
+
+    # Save the results to a file
+    with open(submission_file_path, "w") as f:
+        f.write("\n".join(submission_results))
+
 # %% 
 def main():
 
@@ -639,6 +678,25 @@ def main():
 
     # Train the model
     history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=100, lr=0.00025, epochs=20)
+
+
+
+    """
+    Creating submission file
+    """
+
+    valid_dataset = CustomDataset(
+        file_paths=valid_fake + valid_real,
+        labels=[0] * len(valid_fake) + [1] * len(valid_real),
+        transform=valid_transform
+    )
+    valid_loader = DataLoader(valid_dataset, batch_size=128, shuffle=False, num_workers=8)
+
+    eval_model = CombinedModel(HEIGHT, WIDTH)
+    load_model(eval_model, "/home/nithira/sp_cup/saved_states/combined_model_b6_20250113_201930.pth", device)
+    submission_file_path = "submission.txt"
+    save_submission(eval_model, valid_loader, submission_file_path, device)
+    print(f"Submission file saved at: {os.path.abspath(submission_file_path)}")
 
 if __name__ == "__main__":
     main()
