@@ -37,6 +37,25 @@ from typing import Dict, Optional
 import logging
 from pathlib import Path
 
+class CustomDataset(torch.utils.data.Dataset):
+    def __init__(self, file_paths, labels, transform=None):
+        self.file_paths = file_paths
+        self.labels = labels
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.file_paths)
+
+    def __getitem__(self, idx):
+        image_path = self.file_paths[idx]
+        label = self.labels[idx]
+        file_id = os.path.basename(image_path).split(".")[0]  # Extract file ID from filename
+        image = Image.open(image_path).convert("RGB")  # Load image as RGB
+
+        if self.transform:
+            image = self.transform(image)
+
+        return image, label, file_id
 
 class FrequencyBranch(nn.Module):
     def __init__(self, HEIGHT, WIDTH, output_size=128, hidden_size1=512, hidden_size2=256):
@@ -270,7 +289,6 @@ class MetricsHandler:
         """Close TensorBoard writer."""
         self.writer.close()
 
-
 # %%
 def compute_mean_and_std(data_dir):
     """
@@ -345,7 +363,6 @@ def accuracy_fn(y_true, y_pred):
   correct = torch.eq(y_true, y_pred).sum().item()
   acc = (correct/len(y_pred)) * 100
   return acc
-
 # %%
 def train(model, train_loader, optimizer, loss_fn, metrics_handler, epoch, device):
     scaler = GradScaler()
