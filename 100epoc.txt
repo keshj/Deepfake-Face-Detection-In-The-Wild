@@ -1,0 +1,940 @@
+Epoch: 29
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:14:22,225 - INFO - Train Epoch 29: accuracy: 0.9427 | precision: 0.9325 | recall: 0.9545 | f1: 0.9434 | auroc: 0.9427 | loss: 0.1495
+Training epoch time: 32.09s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.64it/s]
+2025-01-15 16:14:24,675 - INFO - Val Epoch 29: accuracy: 0.9040 | precision: 0.9348 | recall: 0.8702 | f1: 0.9013 | auroc: 0.9042 | loss: 5.3411s]
+Validation epoch time: 2.45s
+Real images identified as real: 1347
+Real images identified as fake: 201
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_161424.pth
+ 30%|████████████████████████████████▍                                                                           | 30/100 [17:52<41:28, 35.56s/it]Epoch: 30
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:14:57,770 - INFO - Train Epoch 30: accuracy: 0.9402 | precision: 0.9297 | recall: 0.9525 | f1: 0.9410 | auroc: 0.9402 | loss: 0.1522
+Training epoch time: 32.13s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.50it/s]
+2025-01-15 16:15:00,237 - INFO - Val Epoch 30: accuracy: 0.9076 | precision: 0.9395 | recall: 0.8727 | f1: 0.9049 | auroc: 0.9078 | loss: 5.1186s]
+Validation epoch time: 2.46s
+Real images identified as real: 1351
+Real images identified as fake: 197
+Fake images identified as real: 87
+Fake images identified as fake: 1437
+ 31%|█████████████████████████████████▍                                                                          | 31/100 [18:28<40:48, 35.49s/it]Epoch: 31
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:15:33,098 - INFO - Train Epoch 31: accuracy: 0.9418 | precision: 0.9310 | recall: 0.9543 | f1: 0.9425 | auroc: 0.9418 | loss: 0.1486
+Training epoch time: 32.15s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.32it/s]
+2025-01-15 16:15:35,589 - INFO - Val Epoch 31: accuracy: 0.9027 | precision: 0.9382 | recall: 0.8637 | f1: 0.8994 | auroc: 0.9030 | loss: 5.2681s]
+Validation epoch time: 2.49s
+Real images identified as real: 1337
+Real images identified as fake: 211
+Fake images identified as real: 88
+Fake images identified as fake: 1436
+ 32%|██████████████████████████████████▌                                                                         | 32/100 [19:03<40:10, 35.45s/it]Epoch: 32
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:16:08,339 - INFO - Train Epoch 32: accuracy: 0.9391 | precision: 0.9280 | recall: 0.9520 | f1: 0.9399 | auroc: 0.9391 | loss: 0.1536
+Training epoch time: 32.06s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.55it/s]
+2025-01-15 16:16:10,934 - INFO - Val Epoch 32: accuracy: 0.9040 | precision: 0.9366 | recall: 0.8682 | f1: 0.9011 | auroc: 0.9043 | loss: 5.3662s]
+Validation epoch time: 2.59s
+Real images identified as real: 1344
+Real images identified as fake: 204
+Fake images identified as real: 91
+Fake images identified as fake: 1433
+ 33%|███████████████████████████████████▋                                                                        | 33/100 [19:38<39:32, 35.42s/it]Epoch: 33
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:16:44,029 - INFO - Train Epoch 33: accuracy: 0.9403 | precision: 0.9271 | recall: 0.9557 | f1: 0.9412 | auroc: 0.9403 | loss: 0.1503
+Training epoch time: 32.38s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.57it/s]
+2025-01-15 16:16:46,487 - INFO - Val Epoch 33: accuracy: 0.9030 | precision: 0.9365 | recall: 0.8663 | f1: 0.9000 | auroc: 0.9033 | loss: 5.4464s]
+Validation epoch time: 2.45s
+Real images identified as real: 1341
+Real images identified as fake: 207
+Fake images identified as real: 91
+Fake images identified as fake: 1433
+ 34%|████████████████████████████████████▋                                                                       | 34/100 [20:14<39:00, 35.46s/it]Epoch: 34
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:17:19,699 - INFO - Train Epoch 34: accuracy: 0.9416 | precision: 0.9309 | recall: 0.9541 | f1: 0.9423 | auroc: 0.9416 | loss: 0.1461
+Training epoch time: 32.50s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.68it/s]
+2025-01-15 16:17:22,145 - INFO - Val Epoch 34: accuracy: 0.9036 | precision: 0.9347 | recall: 0.8695 | f1: 0.9009 | auroc: 0.9039 | loss: 5.3282s]
+Validation epoch time: 2.44s
+Real images identified as real: 1346
+Real images identified as fake: 202
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_161722.pth
+ 35%|█████████████████████████████████████▊                                                                      | 35/100 [20:50<38:33, 35.59s/it]Epoch: 35
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:17:55,087 - INFO - Train Epoch 35: accuracy: 0.9411 | precision: 0.9296 | recall: 0.9545 | f1: 0.9419 | auroc: 0.9411 | loss: 0.1507
+Training epoch time: 31.96s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.35it/s]
+2025-01-15 16:17:57,574 - INFO - Val Epoch 35: accuracy: 0.8997 | precision: 0.9330 | recall: 0.8630 | f1: 0.8966 | auroc: 0.9000 | loss: 5.5451s]
+Validation epoch time: 2.48s
+Real images identified as real: 1336
+Real images identified as fake: 212
+Fake images identified as real: 96
+Fake images identified as fake: 1428
+ 36%|██████████████████████████████████████▉                                                                     | 36/100 [21:25<37:50, 35.47s/it]Epoch: 36
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.14it/s]
+2025-01-15 16:18:30,178 - INFO - Train Epoch 36: accuracy: 0.9397 | precision: 0.9271 | recall: 0.9545 | f1: 0.9406 | auroc: 0.9397 | loss: 0.1498
+Training epoch time: 31.90s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.11it/s]
+2025-01-15 16:18:32,695 - INFO - Val Epoch 36: accuracy: 0.9014 | precision: 0.9368 | recall: 0.8624 | f1: 0.8981 | auroc: 0.9017 | loss: 5.4807s]
+Validation epoch time: 2.51s
+Real images identified as real: 1335
+Real images identified as fake: 213
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 37%|███████████████████████████████████████▉                                                                    | 37/100 [22:00<37:08, 35.37s/it]Epoch: 37
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:19:05,508 - INFO - Train Epoch 37: accuracy: 0.9386 | precision: 0.9267 | recall: 0.9526 | f1: 0.9395 | auroc: 0.9386 | loss: 0.1537
+Training epoch time: 31.98s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.25it/s]
+2025-01-15 16:19:08,007 - INFO - Val Epoch 37: accuracy: 0.9069 | precision: 0.9419 | recall: 0.8689 | f1: 0.9039 | auroc: 0.9072 | loss: 5.1568s]
+Validation epoch time: 2.50s
+Real images identified as real: 1345
+Real images identified as fake: 203
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 38%|█████████████████████████████████████████                                                                   | 38/100 [22:36<36:31, 35.35s/it]Epoch: 38
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:19:40,998 - INFO - Train Epoch 38: accuracy: 0.9393 | precision: 0.9286 | recall: 0.9518 | f1: 0.9400 | auroc: 0.9393 | loss: 0.1526
+Training epoch time: 32.30s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.38it/s]
+2025-01-15 16:19:43,481 - INFO - Val Epoch 38: accuracy: 0.9040 | precision: 0.9372 | recall: 0.8676 | f1: 0.9010 | auroc: 0.9043 | loss: 5.2960s]
+Validation epoch time: 2.48s
+Real images identified as real: 1343
+Real images identified as fake: 205
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 39%|██████████████████████████████████████████                                                                  | 39/100 [23:11<35:58, 35.39s/it]Epoch: 39
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:20:16,632 - INFO - Train Epoch 39: accuracy: 0.9390 | precision: 0.9274 | recall: 0.9527 | f1: 0.9398 | auroc: 0.9390 | loss: 0.1515
+Training epoch time: 32.45s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.23it/s]
+2025-01-15 16:20:19,134 - INFO - Val Epoch 39: accuracy: 0.9020 | precision: 0.9400 | recall: 0.8605 | f1: 0.8985 | auroc: 0.9023 | loss: 5.3889s]
+Validation epoch time: 2.50s
+Real images identified as real: 1332
+Real images identified as fake: 216
+Fake images identified as real: 85
+Fake images identified as fake: 1439
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_162019.pth
+ 40%|███████████████████████████████████████████▏                                                                | 40/100 [23:47<35:31, 35.53s/it]Epoch: 40
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:20:52,017 - INFO - Train Epoch 40: accuracy: 0.9384 | precision: 0.9275 | recall: 0.9510 | f1: 0.9391 | auroc: 0.9384 | loss: 0.1549
+Training epoch time: 31.96s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.25it/s]
+2025-01-15 16:20:54,516 - INFO - Val Epoch 40: accuracy: 0.8971 | precision: 0.9338 | recall: 0.8566 | f1: 0.8935 | auroc: 0.8975 | loss: 5.6638s]
+Validation epoch time: 2.50s
+Real images identified as real: 1326
+Real images identified as fake: 222
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+ 41%|████████████████████████████████████████████▎                                                               | 41/100 [24:22<34:49, 35.42s/it]Epoch: 41
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:21:27,384 - INFO - Train Epoch 41: accuracy: 0.9434 | precision: 0.9317 | recall: 0.9570 | f1: 0.9442 | auroc: 0.9434 | loss: 0.1451
+Training epoch time: 32.16s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.50it/s]
+2025-01-15 16:21:29,852 - INFO - Val Epoch 41: accuracy: 0.9004 | precision: 0.9411 | recall: 0.8559 | f1: 0.8965 | auroc: 0.9007 | loss: 5.3321s]
+Validation epoch time: 2.46s
+Real images identified as real: 1325
+Real images identified as fake: 223
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 42%|█████████████████████████████████████████████▎                                                              | 42/100 [24:57<34:13, 35.40s/it]Epoch: 42
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:22:02,742 - INFO - Train Epoch 42: accuracy: 0.9372 | precision: 0.9287 | recall: 0.9472 | f1: 0.9378 | auroc: 0.9372 | loss: 0.1532
+Training epoch time: 32.19s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.56it/s]
+2025-01-15 16:22:05,201 - INFO - Val Epoch 42: accuracy: 0.9014 | precision: 0.9399 | recall: 0.8592 | f1: 0.8977 | auroc: 0.9017 | loss: 5.5367s]
+Validation epoch time: 2.46s
+Real images identified as real: 1330
+Real images identified as fake: 218
+Fake images identified as real: 85
+Fake images identified as fake: 1439
+ 43%|██████████████████████████████████████████████▍                                                             | 43/100 [25:33<33:36, 35.38s/it]Epoch: 43
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:22:38,075 - INFO - Train Epoch 43: accuracy: 0.9415 | precision: 0.9286 | recall: 0.9566 | f1: 0.9424 | auroc: 0.9415 | loss: 0.1504
+Training epoch time: 32.16s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.69it/s]
+2025-01-15 16:22:40,519 - INFO - Val Epoch 43: accuracy: 0.9017 | precision: 0.9332 | recall: 0.8669 | f1: 0.8989 | auroc: 0.9020 | loss: 5.4830s]
+Validation epoch time: 2.44s
+Real images identified as real: 1342
+Real images identified as fake: 206
+Fake images identified as real: 96
+Fake images identified as fake: 1428
+ 44%|███████████████████████████████████████████████▌                                                            | 44/100 [26:08<33:00, 35.36s/it]Epoch: 44
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:23:13,189 - INFO - Train Epoch 44: accuracy: 0.9411 | precision: 0.9277 | recall: 0.9568 | f1: 0.9420 | auroc: 0.9411 | loss: 0.1502
+Training epoch time: 31.96s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.45it/s]
+2025-01-15 16:23:15,663 - INFO - Val Epoch 44: accuracy: 0.9040 | precision: 0.9390 | recall: 0.8656 | f1: 0.9008 | auroc: 0.9043 | loss: 5.1352s]
+Validation epoch time: 2.47s
+Real images identified as real: 1340
+Real images identified as fake: 208
+Fake images identified as real: 87
+Fake images identified as fake: 1437
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_162315.pth
+ 45%|████████████████████████████████████████████████▌                                                           | 45/100 [26:43<32:24, 35.36s/it]Epoch: 45
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:23:48,628 - INFO - Train Epoch 45: accuracy: 0.9427 | precision: 0.9308 | recall: 0.9564 | f1: 0.9434 | auroc: 0.9427 | loss: 0.1477
+Training epoch time: 32.01s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.54it/s]
+2025-01-15 16:23:51,091 - INFO - Val Epoch 45: accuracy: 0.9017 | precision: 0.9394 | recall: 0.8605 | f1: 0.8982 | auroc: 0.9020 | loss: 5.3902s]
+Validation epoch time: 2.46s
+Real images identified as real: 1332
+Real images identified as fake: 216
+Fake images identified as real: 86
+Fake images identified as fake: 1438
+ 46%|█████████████████████████████████████████████████▋                                                          | 46/100 [27:19<31:47, 35.32s/it]Epoch: 46
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:24:24,096 - INFO - Train Epoch 46: accuracy: 0.9402 | precision: 0.9298 | recall: 0.9523 | f1: 0.9409 | auroc: 0.9402 | loss: 0.1517
+Training epoch time: 32.31s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.02it/s]
+2025-01-15 16:24:26,625 - INFO - Val Epoch 46: accuracy: 0.9010 | precision: 0.9368 | recall: 0.8618 | f1: 0.8977 | auroc: 0.9014 | loss: 5.3732s]
+Validation epoch time: 2.53s
+Real images identified as real: 1334
+Real images identified as fake: 214
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 47%|██████████████████████████████████████████████████▊                                                         | 47/100 [27:54<31:15, 35.38s/it]Epoch: 47
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:24:59,422 - INFO - Train Epoch 47: accuracy: 0.9390 | precision: 0.9281 | recall: 0.9516 | f1: 0.9397 | auroc: 0.9390 | loss: 0.1508
+Training epoch time: 32.10s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.04it/s]
+2025-01-15 16:25:01,948 - INFO - Val Epoch 47: accuracy: 0.9059 | precision: 0.9418 | recall: 0.8669 | f1: 0.9028 | auroc: 0.9062 | loss: 5.2690s]
+Validation epoch time: 2.52s
+Real images identified as real: 1342
+Real images identified as fake: 206
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 48%|███████████████████████████████████████████████████▊                                                        | 48/100 [28:29<30:38, 35.36s/it]Epoch: 48
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:25:34,558 - INFO - Train Epoch 48: accuracy: 0.9391 | precision: 0.9277 | recall: 0.9525 | f1: 0.9399 | auroc: 0.9391 | loss: 0.1494
+Training epoch time: 31.92s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.18it/s]
+2025-01-15 16:25:37,067 - INFO - Val Epoch 48: accuracy: 0.9030 | precision: 0.9377 | recall: 0.8650 | f1: 0.8999 | auroc: 0.9033 | loss: 5.3147s]
+Validation epoch time: 2.50s
+Real images identified as real: 1339
+Real images identified as fake: 209
+Fake images identified as real: 89
+Fake images identified as fake: 1435
+ 49%|████████████████████████████████████████████████████▉                                                       | 49/100 [29:05<29:59, 35.29s/it]Epoch: 49
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:26:09,858 - INFO - Train Epoch 49: accuracy: 0.9404 | precision: 0.9292 | recall: 0.9534 | f1: 0.9411 | auroc: 0.9404 | loss: 0.1542
+Training epoch time: 32.08s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.10it/s]
+2025-01-15 16:26:12,377 - INFO - Val Epoch 49: accuracy: 0.9059 | precision: 0.9430 | recall: 0.8656 | f1: 0.9027 | auroc: 0.9062 | loss: 5.2358s]
+Validation epoch time: 2.52s
+Real images identified as real: 1340
+Real images identified as fake: 208
+Fake images identified as real: 81
+Fake images identified as fake: 1443
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_162612.pth
+ 50%|██████████████████████████████████████████████████████                                                      | 50/100 [29:40<29:27, 35.36s/it]Epoch: 50
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:26:45,436 - INFO - Train Epoch 50: accuracy: 0.9399 | precision: 0.9292 | recall: 0.9524 | f1: 0.9407 | auroc: 0.9399 | loss: 0.1517
+Training epoch time: 32.12s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.66it/s]
+2025-01-15 16:26:48,014 - INFO - Val Epoch 50: accuracy: 0.9072 | precision: 0.9407 | recall: 0.8708 | f1: 0.9044 | auroc: 0.9075 | loss: 5.1457s]
+Validation epoch time: 2.57s
+Real images identified as real: 1348
+Real images identified as fake: 200
+Fake images identified as real: 85
+Fake images identified as fake: 1439
+ 51%|███████████████████████████████████████████████████████                                                     | 51/100 [30:16<28:53, 35.38s/it]Epoch: 51
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:27:20,878 - INFO - Train Epoch 51: accuracy: 0.9389 | precision: 0.9279 | recall: 0.9516 | f1: 0.9396 | auroc: 0.9389 | loss: 0.1551
+Training epoch time: 32.16s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.70it/s]
+2025-01-15 16:27:23,321 - INFO - Val Epoch 51: accuracy: 0.9102 | precision: 0.9423 | recall: 0.8753 | f1: 0.9076 | auroc: 0.9104 | loss: 5.3833s]
+Validation epoch time: 2.44s
+Real images identified as real: 1355
+Real images identified as fake: 193
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 52%|████████████████████████████████████████████████████████▏                                                   | 52/100 [30:51<28:17, 35.36s/it]Epoch: 52
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:27:56,311 - INFO - Train Epoch 52: accuracy: 0.9429 | precision: 0.9317 | recall: 0.9559 | f1: 0.9437 | auroc: 0.9429 | loss: 0.1465
+Training epoch time: 32.29s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.44it/s]
+2025-01-15 16:27:58,786 - INFO - Val Epoch 52: accuracy: 0.9023 | precision: 0.9327 | recall: 0.8689 | f1: 0.8997 | auroc: 0.9026 | loss: 5.4310s]
+Validation epoch time: 2.47s
+Real images identified as real: 1345
+Real images identified as fake: 203
+Fake images identified as real: 97
+Fake images identified as fake: 1427
+ 53%|█████████████████████████████████████████████████████████▏                                                  | 53/100 [31:26<27:43, 35.39s/it]Epoch: 53
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:28:31,701 - INFO - Train Epoch 53: accuracy: 0.9365 | precision: 0.9249 | recall: 0.9502 | f1: 0.9374 | auroc: 0.9365 | loss: 0.1543
+Training epoch time: 32.20s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.95it/s]
+2025-01-15 16:28:34,240 - INFO - Val Epoch 53: accuracy: 0.9001 | precision: 0.9367 | recall: 0.8598 | f1: 0.8966 | auroc: 0.9004 | loss: 5.4298s]
+Validation epoch time: 2.54s
+Real images identified as real: 1331
+Real images identified as fake: 217
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 54%|██████████████████████████████████████████████████████████▎                                                 | 54/100 [32:02<27:08, 35.41s/it]Epoch: 54
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.07it/s]
+2025-01-15 16:29:07,551 - INFO - Train Epoch 54: accuracy: 0.9398 | precision: 0.9290 | recall: 0.9523 | f1: 0.9405 | auroc: 0.9398 | loss: 0.1523
+Training epoch time: 32.61s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.95it/s]
+2025-01-15 16:29:10,090 - INFO - Val Epoch 54: accuracy: 0.9049 | precision: 0.9367 | recall: 0.8702 | f1: 0.9022 | auroc: 0.9052 | loss: 5.3587s]
+Validation epoch time: 2.54s
+Real images identified as real: 1347
+Real images identified as fake: 201
+Fake images identified as real: 91
+Fake images identified as fake: 1433
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_162910.pth
+ 55%|███████████████████████████████████████████████████████████▍                                                | 55/100 [32:38<26:44, 35.65s/it]Epoch: 55
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:29:43,665 - INFO - Train Epoch 55: accuracy: 0.9386 | precision: 0.9282 | recall: 0.9509 | f1: 0.9394 | auroc: 0.9386 | loss: 0.1543
+Training epoch time: 32.47s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.79it/s]
+2025-01-15 16:29:46,225 - INFO - Val Epoch 55: accuracy: 0.9040 | precision: 0.9390 | recall: 0.8656 | f1: 0.9008 | auroc: 0.9043 | loss: 5.4737s]
+Validation epoch time: 2.56s
+Real images identified as real: 1340
+Real images identified as fake: 208
+Fake images identified as real: 87
+Fake images identified as fake: 1437
+ 56%|████████████████████████████████████████████████████████████▍                                               | 56/100 [33:14<26:10, 35.69s/it]Epoch: 56
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:30:19,208 - INFO - Train Epoch 56: accuracy: 0.9398 | precision: 0.9287 | recall: 0.9528 | f1: 0.9406 | auroc: 0.9398 | loss: 0.1501
+Training epoch time: 32.28s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.27it/s]
+2025-01-15 16:30:21,706 - INFO - Val Epoch 56: accuracy: 0.9014 | precision: 0.9368 | recall: 0.8624 | f1: 0.8981 | auroc: 0.9017 | loss: 5.2828s]
+Validation epoch time: 2.49s
+Real images identified as real: 1335
+Real images identified as fake: 213
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 57%|█████████████████████████████████████████████████████████████▌                                              | 57/100 [33:49<25:31, 35.63s/it]Epoch: 57
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:30:54,695 - INFO - Train Epoch 57: accuracy: 0.9384 | precision: 0.9259 | recall: 0.9532 | f1: 0.9393 | auroc: 0.9384 | loss: 0.1552
+Training epoch time: 32.29s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.29it/s]
+2025-01-15 16:30:57,189 - INFO - Val Epoch 57: accuracy: 0.9049 | precision: 0.9429 | recall: 0.8637 | f1: 0.9016 | auroc: 0.9053 | loss: 5.4256s]
+Validation epoch time: 2.49s
+Real images identified as real: 1337
+Real images identified as fake: 211
+Fake images identified as real: 81
+Fake images identified as fake: 1443
+ 58%|██████████████████████████████████████████████████████████████▋                                             | 58/100 [34:25<24:54, 35.58s/it]Epoch: 58
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:31:30,253 - INFO - Train Epoch 58: accuracy: 0.9423 | precision: 0.9308 | recall: 0.9557 | f1: 0.9431 | auroc: 0.9423 | loss: 0.1484
+Training epoch time: 32.36s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.60it/s]
+2025-01-15 16:31:32,708 - INFO - Val Epoch 58: accuracy: 0.9001 | precision: 0.9348 | recall: 0.8618 | f1: 0.8968 | auroc: 0.9004 | loss: 5.5890s]
+Validation epoch time: 2.45s
+Real images identified as real: 1334
+Real images identified as fake: 214
+Fake images identified as real: 93
+Fake images identified as fake: 1431
+ 59%|███████████████████████████████████████████████████████████████▋                                            | 59/100 [35:00<24:18, 35.56s/it]Epoch: 59
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:32:05,591 - INFO - Train Epoch 59: accuracy: 0.9392 | precision: 0.9279 | recall: 0.9525 | f1: 0.9400 | auroc: 0.9392 | loss: 0.1527
+Training epoch time: 32.18s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.45it/s]
+2025-01-15 16:32:08,064 - INFO - Val Epoch 59: accuracy: 0.9076 | precision: 0.9438 | recall: 0.8682 | f1: 0.9044 | auroc: 0.9079 | loss: 5.0516s]
+Validation epoch time: 2.47s
+Real images identified as real: 1344
+Real images identified as fake: 204
+Fake images identified as real: 80
+Fake images identified as fake: 1444
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_163208.pth
+ 60%|████████████████████████████████████████████████████████████████▊                                           | 60/100 [35:36<23:42, 35.57s/it]Epoch: 60
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.07it/s]
+2025-01-15 16:32:41,595 - INFO - Train Epoch 60: accuracy: 0.9377 | precision: 0.9250 | recall: 0.9526 | f1: 0.9386 | auroc: 0.9377 | loss: 0.1554
+Training epoch time: 32.56s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.43it/s]
+2025-01-15 16:32:44,071 - INFO - Val Epoch 60: accuracy: 0.9059 | precision: 0.9375 | recall: 0.8714 | f1: 0.9032 | auroc: 0.9062 | loss: 5.5160s]
+Validation epoch time: 2.47s
+Real images identified as real: 1349
+Real images identified as fake: 199
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 61%|█████████████████████████████████████████████████████████████████▉                                          | 61/100 [36:12<23:09, 35.63s/it]Epoch: 61
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.06it/s]
+2025-01-15 16:33:17,437 - INFO - Train Epoch 61: accuracy: 0.9423 | precision: 0.9321 | recall: 0.9541 | f1: 0.9429 | auroc: 0.9423 | loss: 0.1472
+Training epoch time: 32.66s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.05it/s]
+2025-01-15 16:33:19,962 - INFO - Val Epoch 61: accuracy: 0.9036 | precision: 0.9359 | recall: 0.8682 | f1: 0.9008 | auroc: 0.9039 | loss: 5.3806s]
+Validation epoch time: 2.52s
+Real images identified as real: 1344
+Real images identified as fake: 204
+Fake images identified as real: 92
+Fake images identified as fake: 1432
+ 62%|██████████████████████████████████████████████████████████████████▉                                         | 62/100 [36:47<22:37, 35.71s/it]Epoch: 62
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:33:52,635 - INFO - Train Epoch 62: accuracy: 0.9395 | precision: 0.9281 | recall: 0.9528 | f1: 0.9403 | auroc: 0.9395 | loss: 0.1501
+Training epoch time: 31.98s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.47it/s]
+2025-01-15 16:33:55,107 - INFO - Val Epoch 62: accuracy: 0.9102 | precision: 0.9435 | recall: 0.8740 | f1: 0.9074 | auroc: 0.9104 | loss: 5.3293s]
+Validation epoch time: 2.47s
+Real images identified as real: 1353
+Real images identified as fake: 195
+Fake images identified as real: 81
+Fake images identified as fake: 1443
+ 63%|████████████████████████████████████████████████████████████████████                                        | 63/100 [37:23<21:55, 35.54s/it]Epoch: 63
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:34:28,158 - INFO - Train Epoch 63: accuracy: 0.9397 | precision: 0.9273 | recall: 0.9541 | f1: 0.9405 | auroc: 0.9397 | loss: 0.1533
+Training epoch time: 32.33s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.44it/s]
+2025-01-15 16:34:30,634 - INFO - Val Epoch 63: accuracy: 0.9036 | precision: 0.9372 | recall: 0.8669 | f1: 0.9007 | auroc: 0.9039 | loss: 5.3034s]
+Validation epoch time: 2.47s
+Real images identified as real: 1342
+Real images identified as fake: 206
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 64%|█████████████████████████████████████████████████████████████████████                                       | 64/100 [37:58<21:19, 35.54s/it]Epoch: 64
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:35:03,709 - INFO - Train Epoch 64: accuracy: 0.9400 | precision: 0.9262 | recall: 0.9561 | f1: 0.9409 | auroc: 0.9400 | loss: 0.1527
+Training epoch time: 32.37s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.98it/s]
+2025-01-15 16:35:06,244 - INFO - Val Epoch 64: accuracy: 0.9004 | precision: 0.9337 | recall: 0.8637 | f1: 0.8973 | auroc: 0.9007 | loss: 5.7019s]
+Validation epoch time: 2.53s
+Real images identified as real: 1337
+Real images identified as fake: 211
+Fake images identified as real: 95
+Fake images identified as fake: 1429
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_163506.pth
+ 65%|██████████████████████████████████████████████████████████████████████▏                                     | 65/100 [38:34<20:46, 35.62s/it]Epoch: 65
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:35:39,648 - INFO - Train Epoch 65: accuracy: 0.9407 | precision: 0.9297 | recall: 0.9535 | f1: 0.9415 | auroc: 0.9407 | loss: 0.1542
+Training epoch time: 32.44s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.51it/s]
+2025-01-15 16:35:42,114 - INFO - Val Epoch 65: accuracy: 0.9036 | precision: 0.9311 | recall: 0.8734 | f1: 0.9013 | auroc: 0.9039 | loss: 5.3324s]
+Validation epoch time: 2.46s
+Real images identified as real: 1352
+Real images identified as fake: 196
+Fake images identified as real: 100
+Fake images identified as fake: 1424
+ 66%|███████████████████████████████████████████████████████████████████████▎                                    | 66/100 [39:10<20:11, 35.63s/it]Epoch: 66
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.12it/s]
+2025-01-15 16:36:14,829 - INFO - Train Epoch 66: accuracy: 0.9388 | precision: 0.9259 | recall: 0.9539 | f1: 0.9397 | auroc: 0.9388 | loss: 0.1586
+Training epoch time: 32.00s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.14it/s]
+2025-01-15 16:36:17,342 - INFO - Val Epoch 66: accuracy: 0.9030 | precision: 0.9401 | recall: 0.8624 | f1: 0.8996 | auroc: 0.9033 | loss: 5.5068s]
+Validation epoch time: 2.51s
+Real images identified as real: 1335
+Real images identified as fake: 213
+Fake images identified as real: 85
+Fake images identified as fake: 1439
+ 67%|████████████████████████████████████████████████████████████████████████▎                                   | 67/100 [39:45<19:31, 35.51s/it]Epoch: 67
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:36:50,467 - INFO - Train Epoch 67: accuracy: 0.9368 | precision: 0.9234 | recall: 0.9527 | f1: 0.9378 | auroc: 0.9368 | loss: 0.1572
+Training epoch time: 32.41s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.51it/s]
+2025-01-15 16:36:52,933 - INFO - Val Epoch 67: accuracy: 0.8981 | precision: 0.9346 | recall: 0.8579 | f1: 0.8946 | auroc: 0.8984 | loss: 5.3441s]
+Validation epoch time: 2.46s
+Real images identified as real: 1328
+Real images identified as fake: 220
+Fake images identified as real: 93
+Fake images identified as fake: 1431
+ 68%|█████████████████████████████████████████████████████████████████████████▍                                  | 68/100 [40:20<18:57, 35.54s/it]Epoch: 68
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:37:25,607 - INFO - Train Epoch 68: accuracy: 0.9404 | precision: 0.9291 | recall: 0.9535 | f1: 0.9412 | auroc: 0.9404 | loss: 0.1521
+Training epoch time: 31.98s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.41it/s]
+2025-01-15 16:37:28,085 - INFO - Val Epoch 68: accuracy: 0.9079 | precision: 0.9420 | recall: 0.8708 | f1: 0.9050 | auroc: 0.9082 | loss: 5.2625s]
+Validation epoch time: 2.48s
+Real images identified as real: 1348
+Real images identified as fake: 200
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 69%|██████████████████████████████████████████████████████████████████████████▌                                 | 69/100 [40:56<18:18, 35.42s/it]Epoch: 69
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:38:01,048 - INFO - Train Epoch 69: accuracy: 0.9398 | precision: 0.9293 | recall: 0.9521 | f1: 0.9406 | auroc: 0.9398 | loss: 0.1526
+Training epoch time: 32.26s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.99it/s]
+2025-01-15 16:38:03,582 - INFO - Val Epoch 69: accuracy: 0.9014 | precision: 0.9356 | recall: 0.8637 | f1: 0.8982 | auroc: 0.9017 | loss: 5.4674s]
+Validation epoch time: 2.53s
+Real images identified as real: 1337
+Real images identified as fake: 211
+Fake images identified as real: 92
+Fake images identified as fake: 1432
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_163803.pth
+ 70%|███████████████████████████████████████████████████████████████████████████▌                                | 70/100 [41:31<17:45, 35.51s/it]Epoch: 70
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:38:36,846 - INFO - Train Epoch 70: accuracy: 0.9387 | precision: 0.9263 | recall: 0.9533 | f1: 0.9396 | auroc: 0.9387 | loss: 0.1553
+Training epoch time: 32.30s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.56it/s]
+2025-01-15 16:38:39,305 - INFO - Val Epoch 70: accuracy: 0.9023 | precision: 0.9382 | recall: 0.8630 | f1: 0.8991 | auroc: 0.9027 | loss: 5.2084s]
+Validation epoch time: 2.46s
+Real images identified as real: 1336
+Real images identified as fake: 212
+Fake images identified as real: 88
+Fake images identified as fake: 1436
+ 71%|████████████████████████████████████████████████████████████████████████████▋                               | 71/100 [42:07<17:09, 35.51s/it]Epoch: 71
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:39:12,346 - INFO - Train Epoch 71: accuracy: 0.9399 | precision: 0.9284 | recall: 0.9534 | f1: 0.9407 | auroc: 0.9399 | loss: 0.1482
+Training epoch time: 32.32s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.45it/s]
+2025-01-15 16:39:14,821 - INFO - Val Epoch 71: accuracy: 0.9027 | precision: 0.9358 | recall: 0.8663 | f1: 0.8997 | auroc: 0.9030 | loss: 5.4819s]
+Validation epoch time: 2.47s
+Real images identified as real: 1341
+Real images identified as fake: 207
+Fake images identified as real: 92
+Fake images identified as fake: 1432
+ 72%|█████████████████████████████████████████████████████████████████████████████▊                              | 72/100 [42:42<16:34, 35.51s/it]Epoch: 72
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:39:47,830 - INFO - Train Epoch 72: accuracy: 0.9391 | precision: 0.9260 | recall: 0.9545 | f1: 0.9400 | auroc: 0.9391 | loss: 0.1545
+Training epoch time: 32.30s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.83it/s]
+2025-01-15 16:39:50,385 - INFO - Val Epoch 72: accuracy: 0.8997 | precision: 0.9410 | recall: 0.8547 | f1: 0.8957 | auroc: 0.9001 | loss: 5.4264s]
+Validation epoch time: 2.55s
+Real images identified as real: 1323
+Real images identified as fake: 225
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 73%|██████████████████████████████████████████████████████████████████████████████▊                             | 73/100 [43:18<15:59, 35.53s/it]Epoch: 73
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:40:23,371 - INFO - Train Epoch 73: accuracy: 0.9411 | precision: 0.9303 | recall: 0.9535 | f1: 0.9418 | auroc: 0.9411 | loss: 0.1490
+Training epoch time: 32.28s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.97it/s]
+2025-01-15 16:40:25,908 - INFO - Val Epoch 73: accuracy: 0.9040 | precision: 0.9396 | recall: 0.8650 | f1: 0.9008 | auroc: 0.9043 | loss: 5.3374s]
+Validation epoch time: 2.53s
+Real images identified as real: 1339
+Real images identified as fake: 209
+Fake images identified as real: 86
+Fake images identified as fake: 1438
+ 74%|███████████████████████████████████████████████████████████████████████████████▉                            | 74/100 [43:53<15:23, 35.53s/it]Epoch: 74
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:40:59,108 - INFO - Train Epoch 74: accuracy: 0.9386 | precision: 0.9283 | recall: 0.9506 | f1: 0.9393 | auroc: 0.9386 | loss: 0.1513
+Training epoch time: 32.48s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.07it/s]
+2025-01-15 16:41:01,631 - INFO - Val Epoch 74: accuracy: 0.9004 | precision: 0.9373 | recall: 0.8598 | f1: 0.8969 | auroc: 0.9007 | loss: 5.3700s]
+Validation epoch time: 2.52s
+Real images identified as real: 1331
+Real images identified as fake: 217
+Fake images identified as real: 89
+Fake images identified as fake: 1435
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_164101.pth
+ 75%|█████████████████████████████████████████████████████████████████████████████████                           | 75/100 [44:29<14:51, 35.65s/it]Epoch: 75
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:41:35,009 - INFO - Train Epoch 75: accuracy: 0.9376 | precision: 0.9274 | recall: 0.9495 | f1: 0.9383 | auroc: 0.9376 | loss: 0.1550
+Training epoch time: 32.42s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.18it/s]
+2025-01-15 16:41:37,518 - INFO - Val Epoch 75: accuracy: 0.9059 | precision: 0.9375 | recall: 0.8714 | f1: 0.9032 | auroc: 0.9062 | loss: 5.1558s]
+Validation epoch time: 2.51s
+Real images identified as real: 1349
+Real images identified as fake: 199
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 76%|██████████████████████████████████████████████████████████████████████████████████                          | 76/100 [45:05<14:15, 35.66s/it]Epoch: 76
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:42:10,610 - INFO - Train Epoch 76: accuracy: 0.9389 | precision: 0.9263 | recall: 0.9538 | f1: 0.9398 | auroc: 0.9389 | loss: 0.1524
+Training epoch time: 32.38s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.52it/s]
+2025-01-15 16:42:13,209 - INFO - Val Epoch 76: accuracy: 0.9014 | precision: 0.9368 | recall: 0.8624 | f1: 0.8981 | auroc: 0.9017 | loss: 5.2533s]
+Validation epoch time: 2.59s
+Real images identified as real: 1335
+Real images identified as fake: 213
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 77%|███████████████████████████████████████████████████████████████████████████████████▏                        | 77/100 [45:41<13:40, 35.67s/it]Epoch: 77
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:42:46,425 - INFO - Train Epoch 77: accuracy: 0.9415 | precision: 0.9308 | recall: 0.9540 | f1: 0.9422 | auroc: 0.9415 | loss: 0.1498
+Training epoch time: 32.48s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.98it/s]
+2025-01-15 16:42:48,959 - INFO - Val Epoch 77: accuracy: 0.9059 | precision: 0.9356 | recall: 0.8734 | f1: 0.9034 | auroc: 0.9062 | loss: 5.3954s]
+Validation epoch time: 2.53s
+Real images identified as real: 1352
+Real images identified as fake: 196
+Fake images identified as real: 93
+Fake images identified as fake: 1431
+ 78%|████████████████████████████████████████████████████████████████████████████████████▏                       | 78/100 [46:16<13:05, 35.69s/it]Epoch: 78
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.07it/s]
+2025-01-15 16:43:22,201 - INFO - Train Epoch 78: accuracy: 0.9421 | precision: 0.9328 | recall: 0.9530 | f1: 0.9428 | auroc: 0.9421 | loss: 0.1477
+Training epoch time: 32.53s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.27it/s]
+2025-01-15 16:43:24,698 - INFO - Val Epoch 78: accuracy: 0.9049 | precision: 0.9398 | recall: 0.8669 | f1: 0.9019 | auroc: 0.9052 | loss: 5.3638s]
+Validation epoch time: 2.49s
+Real images identified as real: 1342
+Real images identified as fake: 206
+Fake images identified as real: 86
+Fake images identified as fake: 1438
+ 79%|█████████████████████████████████████████████████████████████████████████████████████▎                      | 79/100 [46:52<12:29, 35.71s/it]Epoch: 79
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:43:57,546 - INFO - Train Epoch 79: accuracy: 0.9423 | precision: 0.9313 | recall: 0.9552 | f1: 0.9431 | auroc: 0.9423 | loss: 0.1493
+Training epoch time: 32.14s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.01it/s]
+2025-01-15 16:44:00,077 - INFO - Val Epoch 79: accuracy: 0.9056 | precision: 0.9417 | recall: 0.8663 | f1: 0.9024 | auroc: 0.9059 | loss: 5.4609s]
+Validation epoch time: 2.53s
+Real images identified as real: 1341
+Real images identified as fake: 207
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_164400.pth
+ 80%|██████████████████████████████████████████████████████████████████████████████████████▍                     | 80/100 [47:28<11:53, 35.67s/it]Epoch: 80
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:44:33,366 - INFO - Train Epoch 80: accuracy: 0.9400 | precision: 0.9289 | recall: 0.9530 | f1: 0.9408 | auroc: 0.9400 | loss: 0.1502
+Training epoch time: 32.33s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.85it/s]
+2025-01-15 16:44:35,919 - INFO - Val Epoch 80: accuracy: 0.9053 | precision: 0.9362 | recall: 0.8714 | f1: 0.9026 | auroc: 0.9055 | loss: 5.2388s]
+Validation epoch time: 2.55s
+Real images identified as real: 1349
+Real images identified as fake: 199
+Fake images identified as real: 92
+Fake images identified as fake: 1432
+ 81%|███████████████████████████████████████████████████████████████████████████████████████▍                    | 81/100 [48:03<11:17, 35.66s/it]Epoch: 81
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:45:08,815 - INFO - Train Epoch 81: accuracy: 0.9393 | precision: 0.9256 | recall: 0.9555 | f1: 0.9403 | auroc: 0.9393 | loss: 0.1540
+Training epoch time: 32.20s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.38it/s]
+2025-01-15 16:45:11,297 - INFO - Val Epoch 81: accuracy: 0.9076 | precision: 0.9365 | recall: 0.8760 | f1: 0.9052 | auroc: 0.9078 | loss: 5.3648s]
+Validation epoch time: 2.48s
+Real images identified as real: 1356
+Real images identified as fake: 192
+Fake images identified as real: 92
+Fake images identified as fake: 1432
+ 82%|████████████████████████████████████████████████████████████████████████████████████████▌                   | 82/100 [48:39<10:40, 35.57s/it]Epoch: 82
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:45:44,246 - INFO - Train Epoch 82: accuracy: 0.9420 | precision: 0.9300 | recall: 0.9559 | f1: 0.9428 | auroc: 0.9420 | loss: 0.1498
+Training epoch time: 32.23s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.61it/s]
+2025-01-15 16:45:46,699 - INFO - Val Epoch 82: accuracy: 0.8991 | precision: 0.9335 | recall: 0.8611 | f1: 0.8958 | auroc: 0.8994 | loss: 5.6531s]
+Validation epoch time: 2.45s
+Real images identified as real: 1333
+Real images identified as fake: 215
+Fake images identified as real: 95
+Fake images identified as fake: 1429
+ 83%|█████████████████████████████████████████████████████████████████████████████████████████▋                  | 83/100 [49:14<10:03, 35.52s/it]Epoch: 83
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:46:19,902 - INFO - Train Epoch 83: accuracy: 0.9394 | precision: 0.9268 | recall: 0.9541 | f1: 0.9403 | auroc: 0.9394 | loss: 0.1507
+Training epoch time: 32.49s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.55it/s]
+2025-01-15 16:46:22,364 - INFO - Val Epoch 83: accuracy: 0.9062 | precision: 0.9430 | recall: 0.8663 | f1: 0.9030 | auroc: 0.9066 | loss: 5.2511s]
+Validation epoch time: 2.46s
+Real images identified as real: 1341
+Real images identified as fake: 207
+Fake images identified as real: 81
+Fake images identified as fake: 1443
+ 84%|██████████████████████████████████████████████████████████████████████████████████████████▋                 | 84/100 [49:50<09:29, 35.57s/it]Epoch: 84
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:46:55,197 - INFO - Train Epoch 84: accuracy: 0.9379 | precision: 0.9263 | recall: 0.9516 | f1: 0.9388 | auroc: 0.9379 | loss: 0.1554
+Training epoch time: 32.12s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.31it/s]
+2025-01-15 16:46:57,688 - INFO - Val Epoch 84: accuracy: 0.9027 | precision: 0.9346 | recall: 0.8676 | f1: 0.8998 | auroc: 0.9029 | loss: 5.3631s]
+Validation epoch time: 2.49s
+Real images identified as real: 1343
+Real images identified as fake: 205
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_164657.pth
+ 85%|███████████████████████████████████████████████████████████████████████████████████████████▊                | 85/100 [50:25<08:53, 35.56s/it]Epoch: 85
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:47:30,936 - INFO - Train Epoch 85: accuracy: 0.9401 | precision: 0.9288 | recall: 0.9533 | f1: 0.9409 | auroc: 0.9401 | loss: 0.1539
+Training epoch time: 32.28s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.19it/s]
+2025-01-15 16:47:33,444 - INFO - Val Epoch 85: accuracy: 0.9020 | precision: 0.9339 | recall: 0.8669 | f1: 0.8992 | auroc: 0.9023 | loss: 5.4297s]
+Validation epoch time: 2.50s
+Real images identified as real: 1342
+Real images identified as fake: 206
+Fake images identified as real: 95
+Fake images identified as fake: 1429
+ 86%|████████████████████████████████████████████████████████████████████████████████████████████▉               | 86/100 [51:01<08:17, 35.55s/it]Epoch: 86
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:48:06,582 - INFO - Train Epoch 86: accuracy: 0.9379 | precision: 0.9256 | recall: 0.9524 | f1: 0.9388 | auroc: 0.9379 | loss: 0.1554
+Training epoch time: 32.42s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.25it/s]
+2025-01-15 16:48:09,082 - INFO - Val Epoch 86: accuracy: 0.9027 | precision: 0.9340 | recall: 0.8682 | f1: 0.8999 | auroc: 0.9029 | loss: 5.5208s]
+Validation epoch time: 2.50s
+Real images identified as real: 1344
+Real images identified as fake: 204
+Fake images identified as real: 95
+Fake images identified as fake: 1429
+ 87%|█████████████████████████████████████████████████████████████████████████████████████████████▉              | 87/100 [51:37<07:42, 35.58s/it]Epoch: 87
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:48:41,796 - INFO - Train Epoch 87: accuracy: 0.9404 | precision: 0.9281 | recall: 0.9548 | f1: 0.9413 | auroc: 0.9404 | loss: 0.1500
+Training epoch time: 32.00s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.24it/s]
+2025-01-15 16:48:44,297 - INFO - Val Epoch 87: accuracy: 0.8955 | precision: 0.9385 | recall: 0.8482 | f1: 0.8911 | auroc: 0.8959 | loss: 5.5782s]
+Validation epoch time: 2.50s
+Real images identified as real: 1313
+Real images identified as fake: 235
+Fake images identified as real: 86
+Fake images identified as fake: 1438
+ 88%|███████████████████████████████████████████████████████████████████████████████████████████████             | 88/100 [52:12<07:05, 35.47s/it]Epoch: 88
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.06it/s]
+2025-01-15 16:49:17,674 - INFO - Train Epoch 88: accuracy: 0.9404 | precision: 0.9302 | recall: 0.9523 | f1: 0.9411 | auroc: 0.9404 | loss: 0.1521
+Training epoch time: 32.66s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.49it/s]
+2025-01-15 16:49:20,142 - INFO - Val Epoch 88: accuracy: 0.9004 | precision: 0.9367 | recall: 0.8605 | f1: 0.8970 | auroc: 0.9007 | loss: 5.0700s]
+Validation epoch time: 2.46s
+Real images identified as real: 1332
+Real images identified as fake: 216
+Fake images identified as real: 90
+Fake images identified as fake: 1434
+ 89%|████████████████████████████████████████████████████████████████████████████████████████████████            | 89/100 [52:48<06:31, 35.58s/it]Epoch: 89
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:49:53,133 - INFO - Train Epoch 89: accuracy: 0.9411 | precision: 0.9311 | recall: 0.9526 | f1: 0.9417 | auroc: 0.9411 | loss: 0.1504
+Training epoch time: 32.28s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.48it/s]
+2025-01-15 16:49:55,603 - INFO - Val Epoch 89: accuracy: 0.9014 | precision: 0.9344 | recall: 0.8650 | f1: 0.8984 | auroc: 0.9017 | loss: 5.4787s]
+Validation epoch time: 2.47s
+Real images identified as real: 1339
+Real images identified as fake: 209
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_164955.pth
+ 90%|█████████████████████████████████████████████████████████████████████████████████████████████████▏          | 90/100 [53:23<05:56, 35.61s/it]Epoch: 90
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:50:28,926 - INFO - Train Epoch 90: accuracy: 0.9409 | precision: 0.9283 | recall: 0.9557 | f1: 0.9418 | auroc: 0.9409 | loss: 0.1531
+Training epoch time: 32.37s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.18it/s]
+2025-01-15 16:50:31,435 - INFO - Val Epoch 90: accuracy: 0.9014 | precision: 0.9320 | recall: 0.8676 | f1: 0.8986 | auroc: 0.9016 | loss: 5.5954s]
+Validation epoch time: 2.51s
+Real images identified as real: 1343
+Real images identified as fake: 205
+Fake images identified as real: 98
+Fake images identified as fake: 1426
+ 91%|██████████████████████████████████████████████████████████████████████████████████████████████████▎         | 91/100 [53:59<05:20, 35.61s/it]Epoch: 91
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:51:04,399 - INFO - Train Epoch 91: accuracy: 0.9382 | precision: 0.9260 | recall: 0.9527 | f1: 0.9391 | auroc: 0.9382 | loss: 0.1503
+Training epoch time: 32.25s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.45it/s]
+2025-01-15 16:51:06,873 - INFO - Val Epoch 91: accuracy: 0.9079 | precision: 0.9445 | recall: 0.8682 | f1: 0.9047 | auroc: 0.9082 | loss: 5.4728s]
+Validation epoch time: 2.47s
+Real images identified as real: 1344
+Real images identified as fake: 204
+Fake images identified as real: 79
+Fake images identified as fake: 1445
+ 92%|███████████████████████████████████████████████████████████████████████████████████████████████████▎        | 92/100 [54:34<04:44, 35.56s/it]Epoch: 92
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.11it/s]
+2025-01-15 16:51:39,737 - INFO - Train Epoch 92: accuracy: 0.9409 | precision: 0.9300 | recall: 0.9534 | f1: 0.9416 | auroc: 0.9409 | loss: 0.1498
+Training epoch time: 32.14s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.22it/s]
+2025-01-15 16:51:42,240 - INFO - Val Epoch 92: accuracy: 0.9014 | precision: 0.9338 | recall: 0.8656 | f1: 0.8984 | auroc: 0.9016 | loss: 5.4286s]
+Validation epoch time: 2.50s
+Real images identified as real: 1340
+Real images identified as fake: 208
+Fake images identified as real: 95
+Fake images identified as fake: 1429
+ 93%|████████████████████████████████████████████████████████████████████████████████████████████████████▍       | 93/100 [55:10<04:08, 35.50s/it]Epoch: 93
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:52:15,270 - INFO - Train Epoch 93: accuracy: 0.9387 | precision: 0.9282 | recall: 0.9509 | f1: 0.9395 | auroc: 0.9387 | loss: 0.1542
+Training epoch time: 32.31s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.94it/s]
+2025-01-15 16:52:17,810 - INFO - Val Epoch 93: accuracy: 0.9085 | precision: 0.9354 | recall: 0.8792 | f1: 0.9064 | auroc: 0.9088 | loss: 5.3612s]
+Validation epoch time: 2.54s
+Real images identified as real: 1361
+Real images identified as fake: 187
+Fake images identified as real: 94
+Fake images identified as fake: 1430
+ 94%|█████████████████████████████████████████████████████████████████████████████████████████████████████▌      | 94/100 [55:45<03:33, 35.52s/it]Epoch: 94
+------
+0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.14it/s]
+2025-01-15 16:52:50,430 - INFO - Train Epoch 94: accuracy: 0.9389 | precision: 0.9274 | recall: 0.9524 | f1: 0.9398 | auroc: 0.9389 | loss: 0.1516
+Training epoch time: 31.90s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.00it/s]
+2025-01-15 16:52:52,962 - INFO - Val Epoch 94: accuracy: 0.9072 | precision: 0.9425 | recall: 0.8689 | f1: 0.9042 | auroc: 0.9075 | loss: 5.3314s]
+Validation epoch time: 2.53s
+Real images identified as real: 1345
+Real images identified as fake: 203
+Fake images identified as real: 82
+Fake images identified as fake: 1442
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_165252.pth
+ 95%|██████████████████████████████████████████████████████████████████████████████████████████████████████▌     | 95/100 [56:21<02:57, 35.48s/it]Epoch: 95
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:53:26,343 - INFO - Train Epoch 95: accuracy: 0.9408 | precision: 0.9289 | recall: 0.9546 | f1: 0.9416 | auroc: 0.9408 | loss: 0.1494
+Training epoch time: 32.41s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 18.87it/s]
+2025-01-15 16:53:28,894 - INFO - Val Epoch 95: accuracy: 0.9043 | precision: 0.9415 | recall: 0.8637 | f1: 0.9009 | auroc: 0.9046 | loss: 5.3554s]
+Validation epoch time: 2.55s
+Real images identified as real: 1337
+Real images identified as fake: 211
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 96%|███████████████████████████████████████████████████████████████████████████████████████████████████████▋    | 96/100 [56:56<02:22, 35.55s/it]Epoch: 96
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.08it/s]
+2025-01-15 16:54:02,081 - INFO - Train Epoch 96: accuracy: 0.9404 | precision: 0.9290 | recall: 0.9538 | f1: 0.9412 | auroc: 0.9404 | loss: 0.1509
+Training epoch time: 32.45s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.30it/s]
+2025-01-15 16:54:04,573 - INFO - Val Epoch 96: accuracy: 0.9033 | precision: 0.9377 | recall: 0.8656 | f1: 0.9002 | auroc: 0.9036 | loss: 5.4654s]
+Validation epoch time: 2.49s
+Real images identified as real: 1340
+Real images identified as fake: 208
+Fake images identified as real: 89
+Fake images identified as fake: 1435
+ 97%|████████████████████████████████████████████████████████████████████████████████████████████████████████▊   | 97/100 [57:32<01:46, 35.59s/it]Epoch: 97
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:31<00:00,  3.13it/s]
+2025-01-15 16:54:37,273 - INFO - Train Epoch 97: accuracy: 0.9398 | precision: 0.9279 | recall: 0.9538 | f1: 0.9407 | auroc: 0.9398 | loss: 0.1542
+Training epoch time: 31.99s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.23it/s]
+2025-01-15 16:54:39,775 - INFO - Val Epoch 97: accuracy: 0.9069 | precision: 0.9419 | recall: 0.8689 | f1: 0.9039 | auroc: 0.9072 | loss: 5.0027s]
+Validation epoch time: 2.50s
+Real images identified as real: 1345
+Real images identified as fake: 203
+Fake images identified as real: 83
+Fake images identified as fake: 1441
+ 98%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▊  | 98/100 [58:07<01:10, 35.47s/it]Epoch: 98
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.10it/s]
+2025-01-15 16:55:12,724 - INFO - Train Epoch 98: accuracy: 0.9405 | precision: 0.9289 | recall: 0.9539 | f1: 0.9413 | auroc: 0.9405 | loss: 0.1497
+Training epoch time: 32.24s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.11it/s]
+2025-01-15 16:55:15,242 - INFO - Val Epoch 98: accuracy: 0.9053 | precision: 0.9386 | recall: 0.8689 | f1: 0.9024 | auroc: 0.9056 | loss: 5.3504s]
+Validation epoch time: 2.51s
+Real images identified as real: 1345
+Real images identified as fake: 203
+Fake images identified as real: 88
+Fake images identified as fake: 1436
+ 99%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▉ | 99/100 [58:43<00:35, 35.47s/it]Epoch: 99
+------
+1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:32<00:00,  3.09it/s]
+2025-01-15 16:55:48,307 - INFO - Train Epoch 99: accuracy: 0.9406 | precision: 0.9286 | recall: 0.9545 | f1: 0.9414 | auroc: 0.9406 | loss: 0.1511
+Training epoch time: 32.35s
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:02<00:00, 19.20it/s]
+2025-01-15 16:55:50,813 - INFO - Val Epoch 99: accuracy: 0.9007 | precision: 0.9361 | recall: 0.8618 | f1: 0.8974 | auroc: 0.9010 | loss: 5.1948s]
+Validation epoch time: 2.50s
+Real images identified as real: 1334
+Real images identified as fake: 214
+Fake images identified as real: 91
+Fake images identified as fake: 1433
+Model saved to /home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_165550.pth
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [59:19<00:00, 35.59s/it]
+(.venv) nithira@gartmore:~/sp_cup$ 
