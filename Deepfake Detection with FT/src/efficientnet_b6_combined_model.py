@@ -67,6 +67,8 @@ class FrequencyBranch(nn.Module):
         self.relu = nn.ReLU()
 
     def forward(self, img):
+        batch_size = img.shape[0]
+        
         # Perform FFT on GPU
         f_transform = torch.fft.fft2(img)
         f_transform_shifted = torch.fft.fftshift(f_transform)
@@ -89,10 +91,6 @@ class PreTrainedBranch(nn.Module):
         
         # Load pretrained EfficientNet
         self.efficientnet = efficientnet_b6(weights=EfficientNet_B6_Weights.IMAGENET1K_V1)
-
-        # Unfreeze more layers
-        for param in self.efficientnet.parameters():
-            param.requires_grad = True
         
         self.efficientnet.classifier = nn.Sequential(
             nn.Dropout(p=0.2, inplace=True),
@@ -100,7 +98,8 @@ class PreTrainedBranch(nn.Module):
         )
         
     def forward(self, x):
-        return self.efficientnet(x)
+        x = self.efficientnet(x)
+        return x
 
 class CombinedModel(nn.Module):
     def __init__(self, HEIGHT, WIDTH):
@@ -122,7 +121,9 @@ class CombinedModel(nn.Module):
         x = self.dropout(x)
         x = torch.relu(self.fc2(x))
         x = self.dropout(x)
-        return self.fc3(x)
+        x = self.fc3(x)
+        # x = torch.sigmoid(self.fc3(x))
+        return x
 
 class MetricsHandler:
     """
@@ -334,44 +335,17 @@ def compute_mean_and_std(data_dir):
     return mean, std
 
 # %%
-def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanced=True, max_real_samples=20000, max_fake_samples=30000):
+def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False):
     """
     Create train and test data loaders using torchvision.datasets.ImageFolder.
     """
+    BATCHES_PER_EPOCH = 400
+
     dataset = datasets.ImageFolder(data_dir, transform=transform)
-
-    if balanced:
-        '''real_datset = datasets.DatasetFolder(f"{data_dir}/real", transform=transform)
-        fake_dataset = datasets.DatasetFolder(f"{data_dir}/fake", transform=transform)
-
-        real_indices = torch.randperm(len(real_datset))[:max_real_samples]
-        fake_indices = torch.randperm(len(fake_dataset))[:max_fake_samples]
-
-        dataset = torch.utils.data.Subset(real_datset, real_indices) + torch.utils.data.Subset(fake_dataset, fake_indices)'''
-
-        real_images = []
-        fake_images = []
-
-        for img, label in dataset:
-            if label == 0:
-                real_images.append((img, label))
-            elif label == 1:
-                fake_images.append((img, label))
-
-        # Randomly sample 30,000 images from label 0 (real) and 20,000 images from label 1 (fake)
-        sampled_real_images = random.sample(real_images, 30000)
-        sampled_fake_images = random.sample(fake_images, 20000)
-
-        # Combine the sampled images
-        dataset = sampled_real_images + sampled_fake_images
-
-    else:
-        BATCHES_PER_EPOCH = 200
-        #dataset = datasets.ImageFolder(data_dir, transform=transform)
-        if data_dir.rstrip('/').endswith('train'):
-            train_indices = torch.randperm(len(dataset))[:BATCHES_PER_EPOCH * batch_size]
-            train_subset = torch.utils.data.Subset(dataset, train_indices)
-            dataset= train_subset
+    if data_dir.rstrip('/').endswith('train'):
+        train_indices = torch.randperm(len(dataset))[:BATCHES_PER_EPOCH * batch_size]
+        train_subset = torch.utils.data.Subset(dataset, train_indices)
+        dataset= train_subset
 
     dataloader = DataLoader(dataset, 
                             batch_size=batch_size, 
@@ -380,6 +354,7 @@ def get_data_loaders(data_dir, batch_size, transform=None, shuffle=False, balanc
                             pin_memory=True,
                             prefetch_factor=2,
                             persistent_workers=True)
+    
 
     return dataloader
 
@@ -390,7 +365,7 @@ def accuracy_fn(y_true, y_pred):
   return acc
 # %%
 def train(model, train_loader, optimizer, loss_fn, metrics_handler, epoch, device):
-    scaler = GradScaler('cuda')
+    scaler = GradScaler()
     model.train()
     metrics_handler.reset("train")
     start_time = time.time()
@@ -410,8 +385,8 @@ def train(model, train_loader, optimizer, loss_fn, metrics_handler, epoch, devic
         scaler.scale(loss).backward()
 
         # Gradient clipping
-        scaler.unscale_(optimizer)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1)
+        # scaler.unscale_(optimizer)
+        # torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1)
 
         scaler.step(optimizer)
         scaler.update()
@@ -483,14 +458,14 @@ def test(model, test_loader, loss_fn, metrics_handler, epoch, device):
 # %%
 def save_model(model):
     # Create saved_states directory if it doesn't exist
-    os.makedirs("saved_states_b6", exist_ok=True)
+    os.makedirs("saved_states", exist_ok=True)
 
     # Generate timestamp and filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_filename = f"combined_model_b6_{timestamp}.pth"
+    model_filename = f"combined_model_{timestamp}.pth"
 
     # Construct full path
-    model_save_path = os.path.join("/home/nithira/sp_cup/saved_states_b6", model_filename)
+    model_save_path = os.path.join("/home/nithira/sp_cup/keshawa/saved_states", model_filename)
 
     # Save model state dictionary
     torch.save(model.state_dict(), model_save_path)
@@ -510,9 +485,6 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
     # Define the optimizer
     optimizer = optim.Adam(params=model.parameters(), lr=lr, weight_decay=1e-5)
 
-    # Sheduler
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=2)
-
     # Initialize metric handler
     metric_handler = MetricsHandler(
         num_classes=model.num_classes if hasattr(model, 'num_classes') else 2,
@@ -521,7 +493,7 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
     )
 
     # Create save directory
-    save_dir = Path(f"/home/nithira/sp_cup/checkpoints/checkpoint_{time.strftime('%Y%m%d_%H%M%S')}")
+    save_dir = Path(f"/home/nithira/sp_cup/keshawa/checkpoints/checkpoint_{time.strftime('%Y%m%d_%H%M%S')}")
     save_dir.mkdir(parents=True, exist_ok=True)
     
     # Initialize early stopping variables
@@ -545,7 +517,6 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
 
         ### Testing
         val_metrics = test(model, valid_loader, loss_fn, metrics_handler,epoch, device)
-        scheduler.step(val_metrics['loss'])
         history['val_metrics'].append(val_metrics)
 
 
@@ -581,27 +552,13 @@ def train_model(model, train_dir, valid_loader, device,  metrics_handler, batch_
 
     return history
 
-def save_submission(model, valid_loader, submission_file_path, device):
-    model.eval()
-    # Prepare to store results
-    submission_results = []
+# %% [markdown]
+###### Scheduler
 
-    with torch.inference_mode():
-        for i, (X_test, y_test, file_ids) in enumerate(tqdm(valid_loader)):
-            X_test = X_test.to(device)
-            y_test = y_test.float().to(device)
 
-            # Get the model predictions
-            test_logits = model(X_test).squeeze()
-            test_scores = torch.sigmoid(test_logits) 
 
-            # Collect results for submission
-            for file_id, score in zip(file_ids, test_scores.cpu().numpy()):
-                submission_results.append(f"{file_id}\t{score:.6f}")
-
-    # Save the results to a file
-    with open(submission_file_path, "w") as f:
-        f.write("\n".join(submission_results))
+# %% [markdown]
+###### Creating a balanced dataset
 
 # %% 
 def main():
@@ -611,7 +568,7 @@ def main():
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
 
-    BATCH_SIZE = 32
+    BATCH_SIZE = 128
     WIDTH = 128
     HEIGHT = 128
 
@@ -624,13 +581,13 @@ def main():
     train_dir = "/home/nithira/sp_cup/dataset/train"
     valid_dir = "/home/nithira/sp_cup/dataset/valid"
 
-    train_real = (os.listdir(f"{train_dir}/real"))
-    train_fake = (os.listdir(f"{train_dir}/fake"))
-    valid_real = (os.listdir(f"{valid_dir}/real"))
-    valid_fake = (os.listdir(f"{valid_dir}/fake"))
+    train_real = len(os.listdir(f"{train_dir}/real"))
+    train_fake = len(os.listdir(f"{train_dir}/fake"))
+    valid_real = len(os.listdir(f"{valid_dir}/real"))
+    valid_fake = len(os.listdir(f"{valid_dir}/fake"))
 
-    print(f"Training dataset size: {len(train_real) + len(train_fake)} (Real: {len(train_real)}, Fake: {len(train_fake)})")
-    print(f"Validation dataset size: {len(valid_real) + len(valid_fake)} (Real: {len(valid_real)}, Fake: {len(valid_fake)})")
+    print(f"Training dataset size: {train_real + train_fake} (Real: {train_real}, Fake: {train_fake})")
+    print(f"Validation dataset size: {valid_real + valid_fake} (Real: {valid_real}, Fake: {valid_fake})")
 
     training_mean, training_std = compute_mean_and_std(train_dir)
     validating_mean, validating_std = compute_mean_and_std(valid_dir)
@@ -660,12 +617,10 @@ def main():
     train_loader = get_data_loaders(data_dir=train_dir,
                                     batch_size=BATCH_SIZE,
                                     transform=train_transform,
-                                    balanced=True,
                                     shuffle=True)
 
     valid_loader = get_data_loaders(data_dir=valid_dir, 
-                                    batch_size=128,
-                                    balanced=False,
+                                    batch_size=64,
                                     transform=valid_transform)
 
     '''class_names = train_loader.dataset.classes
@@ -690,29 +645,10 @@ def main():
 
     # Load the trained model
     loaded_model = CombinedModel(HEIGHT, WIDTH)
-    load_model(loaded_model, "/home/nithira/sp_cup/saved_states/combined_model_b6_20250113_201930.pth", device)
+    load_model(loaded_model, "/home/nithira/sp_cup/keshawa/saved_states/combined_model_20250114_152541.pth", device)
 
     # Train the model
-    history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=100, lr=0.00025, epochs=20)
-
-
-
-    """
-    Creating submission file
-    """
-
-    valid_dataset = CustomDataset(
-        file_paths=valid_fake + valid_real,
-        labels=[0] * len(valid_fake) + [1] * len(valid_real),
-        transform=valid_transform
-    )
-    valid_loader = DataLoader(valid_dataset, batch_size=128, shuffle=False, num_workers=8)
-
-    eval_model = CombinedModel(HEIGHT, WIDTH)
-    load_model(eval_model, "/home/nithira/sp_cup/saved_states/combined_model_b6_20250113_201930.pth", device)
-    submission_file_path = "submission.txt"
-    save_submission(eval_model, valid_loader, submission_file_path, device)
-    print(f"Submission file saved at: {os.path.abspath(submission_file_path)}")
+    history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=50, lr=0.00005, epochs=20)
 
 if __name__ == "__main__":
     main()
