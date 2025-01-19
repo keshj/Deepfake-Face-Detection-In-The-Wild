@@ -68,7 +68,6 @@ class CustomDataset(torch.utils.data.Dataset):
 
         return image, label, file_id
 
-
 class FrequencyBranch(nn.Module):
     def __init__(self, HEIGHT, WIDTH, output_size=128, hidden_size1=512, hidden_size2=256):
         super(FrequencyBranch, self).__init__()
@@ -500,47 +499,6 @@ def test(model, test_loader, loss_fn, metrics_handler, epoch, device):
 
     return epoch_metrics
 
-def validate_model(model, test_loader, metrics_handler, loss_fn, epoch, device):
-    test_loss, test_acc = 0, 0
-    real_as_real, real_as_fake, fake_as_real, fake_as_fake = 0, 0, 0, 0
-    model.eval()
-    metrics_handler.reset('val')
-    start_time = time.time()
-
-    with torch.inference_mode():
-        for i, (X_test, y_test) in enumerate(tqdm(test_loader)):
-            X_test, y_test = X_test.to(device), y_test.float().to(device)
-
-            test_logits = model(X_test).squeeze()
-            test_pred = torch.round(torch.sigmoid(test_logits))
-            test_loss += loss_fn(test_logits.view(-1), y_test.float()).item()
-            
-            test_acc += accuracy_fn(y_true=y_test, 
-                                    y_pred=test_pred)
-
-            # Update metrics
-            metrics_handler.update('val', test_pred, y_test, test_loss)
-
-            # Ensure y_test and test_pred are still on the GPU
-            fake_as_fake += ((y_test == 0) & (test_pred == 0)).sum().item()
-            fake_as_real += ((y_test == 0) & (test_pred == 1)).sum().item()
-            real_as_fake += ((y_test == 1) & (test_pred == 0)).sum().item()
-            real_as_real += ((y_test == 1) & (test_pred == 1)).sum().item()
-
-        test_loss /= len(test_loader)
-        test_acc /= len(test_loader)
-
-        epoch_metrics = metrics_handler.log_epoch_metrics(epoch, 'val')
-        epoch_time = time.time() - start_time
-        print(f'Validation epoch time: {epoch_time:.2f}s')
-
-        print(f"Real images identified as real: {real_as_real}")
-        print(f"Real images identified as fake: {real_as_fake}")
-        print(f"Fake images identified as real: {fake_as_real}")
-        print(f"Fake images identified as fake: {fake_as_fake}")
-
-    return epoch_metrics
-
 # %%
 def save_model(model):
     # Create saved_states directory if it doesn't exist
@@ -793,17 +751,18 @@ def main():
 
 
     # Load the trained model
-    loaded_model = CombinedModel(HEIGHT, WIDTH).to(device)
+    #loaded_model = CombinedModel(HEIGHT, WIDTH).to(device)
     #loaded_model = PreTrainedBranch(output_features=1).to(device)
     #load_model(loaded_model, f"/home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_131143.pth", device)
 
     # Train the model
-    history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=500, lr=0.0001, epochs=100)
+    #history = train_model(loaded_model, train_dir, valid_loader, device, metrics_handler, BATCH_SIZE, train_transform, early_stopping_patience=500, lr=0.0001, epochs=100)
 
     # Validate Model
     #val_model = CombinedModel(HEIGHT, WIDTH)
-    load_model(loaded_model, f"/home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_172001.pth", device)
-    validate_model(loaded_model, valid_loader,metrics_handler, nn.BCEWithLogitsLoss(), 100, device)
+    #load_model(loaded_model, f"/home/nithira/sp_cup/keshawa/saved_states/combined_model_20250115_172001.pth", device)
+    #validate_model(loaded_model, valid_loader,metrics_handler, nn.BCEWithLogitsLoss(), 100, device)
+
 
     """
     Creating submission file
